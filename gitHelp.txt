@@ -1,10 +1,22 @@
-Creating:
-Using:
+WHAT YOU SHOULD DO EVERY TIME YOU WORK
+	When you start:
+		git pull
+		git pull origin master
+	When you finish:
+		git pull
+		git commit 
+		git push
+		prob do a pull request (its on github)
+
+
+Helpful commands to make sense of life:
 git checkout -b nameOfBranchHere
 	this will checkout a new branch with the name specified
 	p.s. NEVER WORK FROM THE MASTER BRANCH WWWEEEEE WIILLLL FIGHT
 git checkout branchName
 	this will checkout a branch by the name specified
+git push --set-upstream origin branchName
+	do this after you create a new branch, it lets everyone else see it
 git pull origin master 
 	this will give you all the files other people have added
 git pull
@@ -14,7 +26,19 @@ git commit -m "type your commit message here"
 	p.s. don't commit without a commit message
 git push
 	this will push the files you've committed to your network branch
-do a pull request (not a command)
+do a pull request (not a command) //this is done through github
 	this will allow the person over the master branch to add your branch back into master
 
-esc + :wq if you have done git commit
+git commit
+	esc + :wq if you have done git commit
+
+
+if all this is blowing your freaking mind..... There's tortiose git (probably not how its spelled(is it spelt))
+Tortiose git has equivelent commands for some of these all with a pretty little gui
+right click the file you want to commit for, then go to TG section and click "git commit -> branchName"
+You can find pull and push under the TG submenu
+
+Creating:
+To get git and tortoise git
+https://git-scm.com/
+https://tortoisegit.org/
