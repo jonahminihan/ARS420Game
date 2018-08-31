@@ -1,0 +1,20 @@
+Creating:
+Using:
+git checkout -b nameOfBranchHere
+	this will checkout a new branch with the name specified
+	p.s. NEVER WORK FROM THE MASTER BRANCH WWWEEEEE WIILLLL FIGHT
+git checkout branchName
+	this will checkout a branch by the name specified
+git pull origin master 
+	this will give you all the files other people have added
+git pull
+	this will give you all the files other people have added to your branch
+git commit -m "type your commit message here"
+	this will add files you've changed to the list to be pushed
+	p.s. don't commit without a commit message
+git push
+	this will push the files you've committed to your network branch
+do a pull request (not a command)
+	this will allow the person over the master branch to add your branch back into master
+
+esc + :wq if you have done git commit
