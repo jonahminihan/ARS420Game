@@ -12,6 +12,7 @@ WHAT YOU SHOULD DO EVERY TIME YOU WORK
 Helpful commands to make sense of life:
 git checkout -b nameOfBranchHere
 	this will checkout a new branch with the name specified
+	nameOfBranch should be your name formated as such "FirstLast"
 	p.s. NEVER WORK FROM THE MASTER BRANCH WWWEEEEE WIILLLL FIGHT
 git checkout branchName
 	this will checkout a branch by the name specified
