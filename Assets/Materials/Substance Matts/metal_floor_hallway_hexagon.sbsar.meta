@@ -27,7 +27,8 @@ ScriptedImporter:
     generateAllOutputs: 0
     generateMipMaps: 1
     preset: " <sbspreset pkgurl=\"pkg://metal_floor_hallway_hexagon\" label=\"\" >\n
-      </sbspreset>\n"
+      \ <presetinput identifier=\"$outputsize\" uid=\"146872780\" type=\"8\" value=\"11,11\"
+      />\n </sbspreset>\n"
     shaderName: Standard
     outputNames: Base Color,Normal,Metallic,Ambient Occlusion,Height
     texturePackingList:
@@ -74,8 +75,8 @@ ScriptedImporter:
       bOverride: 0
       bLockRatio: 1
       bHighQuality: 0
-      textureWidth: 256
-      textureHeight: 256
+      textureWidth: 2048
+      textureHeight: 2048
       textureFormat: 0
       loadBehavior: 0
     - label: Standalone
