@@ -26,7 +26,9 @@ ScriptedImporter:
     graphDescIndex: 0
     generateAllOutputs: 0
     generateMipMaps: 1
-    preset: " <sbspreset pkgurl=\"pkg://bricks_salem_matt_used\" label=\"\" >\n </sbspreset>\n"
+    preset: " <sbspreset pkgurl=\"pkg://bricks_salem_matt_used\" label=\"\" >\n  <presetinput
+      identifier=\"$outputsize\" uid=\"3306952092\" type=\"8\" value=\"11,11\" />\n
+      </sbspreset>\n"
     shaderName: Standard
     outputNames: Base Color,Normal,Metallic,Ambient Occlusion,Height
     texturePackingList:
@@ -73,8 +75,8 @@ ScriptedImporter:
       bOverride: 0
       bLockRatio: 1
       bHighQuality: 0
-      textureWidth: 256
-      textureHeight: 256
+      textureWidth: 2048
+      textureHeight: 2048
       textureFormat: 0
       loadBehavior: 0
     - label: Standalone
