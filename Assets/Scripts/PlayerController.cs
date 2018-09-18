@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
+
 [RequireComponent(typeof(PlayerMotor))]
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : NetworkBehaviour {
 
     [SerializeField]// makes show up in inspector
     private float speed = 5f;
@@ -11,6 +13,8 @@ public class PlayerController : MonoBehaviour {
     private float lookSensitivity = 3f;
 
     private PlayerMotor motor;
+    public GameObject bulletPrefab;
+    public Transform bulletSpawn;
 
     void Start()
     {
@@ -19,6 +23,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Update()
     {
+
         //Calculate movement veloxity as a 3d vector
         float _xMov = Input.GetAxisRaw("Horizontal");
         float _zMov = Input.GetAxisRaw("Vertical");
@@ -47,7 +52,29 @@ public class PlayerController : MonoBehaviour {
 
         //Apply rotation
         motor.RotateCamera(_cameraRotation);
+        motor.RotateBulletSpawn(_cameraRotation);
+        
+        /////////////////////////////////////////////////////////////////////////////
+        ////Movement and camera Done
+        /////////////////////////////////////////////////////////////////////////////
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            CmdFire();
+        }
+
+    }
+
+    [Command]
+    void CmdFire()
+    {
+        //create the bullet fromt he bullet prefab
+        var bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+
+        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 6;
+
+        NetworkServer.Spawn(bullet);
+        Destroy(bullet, 2.0f);
     }
 
 }

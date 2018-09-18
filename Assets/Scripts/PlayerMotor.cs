@@ -6,6 +6,8 @@ public class PlayerMotor : MonoBehaviour {
 
     [SerializeField]
     private Camera cam;
+    [SerializeField]
+    private GameObject BulletSpawnMotor;
     public Vector3 velocity = Vector3.zero;
     private Vector3 rotation = Vector3.zero;
     private Vector3 cameraRotation = Vector3.zero;
@@ -40,6 +42,13 @@ public class PlayerMotor : MonoBehaviour {
 
     }
 
+    public void RotateBulletSpawn(Vector3 _cameraRotation)
+    {
+        cameraRotation = _cameraRotation;
+
+
+    }
+
     //Run every physics iteration
     private void FixedUpdate()
     {
@@ -64,6 +73,10 @@ public class PlayerMotor : MonoBehaviour {
         {
             cam.transform.Rotate(-cameraRotation);
         }
+        /*if (BulletSpawnMotor != null)
+        {
+            BulletSpawnMotor.transform.Rotate(-cameraRotation);
+        }*/
     }
 
 
