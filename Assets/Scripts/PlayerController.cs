@@ -14,10 +14,13 @@ public class PlayerController : NetworkBehaviour {
 
     private PlayerMotor motor;
     public GameObject bulletPrefab;
+    public GameObject teamObj = GameObject.Find("Teams");
     public Transform bulletSpawn;
+    public int team = 0;
 
     void Start()
     {
+        team = teamObj.GetComponent<TeamScript>().getTeam();  
         motor = GetComponent<PlayerMotor>();
     }
 
