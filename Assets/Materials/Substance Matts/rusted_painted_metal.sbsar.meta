@@ -25,7 +25,9 @@ ScriptedImporter:
     graphDescIndex: 0
     generateAllOutputs: 0
     generateMipMaps: 1
-    preset: " <sbspreset pkgurl=\"pkg://rusted_painted_metal\" label=\"\" >\n </sbspreset>\n"
+    preset: " <sbspreset pkgurl=\"pkg://rusted_painted_metal\" label=\"\" >\n  <presetinput
+      identifier=\"$outputsize\" uid=\"1069543745\" type=\"8\" value=\"11,11\" />\n
+      </sbspreset>\n"
     shaderName: Standard
     outputNames: Base Color,Normal,Metallic,Height
     texturePackingList:
@@ -68,8 +70,8 @@ ScriptedImporter:
       bOverride: 0
       bLockRatio: 1
       bHighQuality: 0
-      textureWidth: 256
-      textureHeight: 256
+      textureWidth: 2048
+      textureHeight: 2048
       textureFormat: 0
       loadBehavior: 0
     - label: Standalone
