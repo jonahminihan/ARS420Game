@@ -589,6 +589,7 @@ MonoBehaviour:
   cam: {fileID: 20640359206860062}
   BulletSpawnMotor: {fileID: 1211958020496510}
   velocity: {x: 0, y: 0, z: 0}
+  forceConst: 10
 --- !u!114 &114290075420069210
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -656,7 +657,6 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 1820696846535894, guid: 1bdfbbb15b9ae3149bd2d620bcd5ed2e, type: 2}
   - {fileID: 1394705165383880, guid: 1bdfbbb15b9ae3149bd2d620bcd5ed2e, type: 2}
-  spawnpoints: []
 --- !u!114 &114834769420992512
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -672,7 +672,9 @@ MonoBehaviour:
   lookSensitivity: 3
   bulletPrefab: {fileID: 1091776530429202, guid: 3d97c4b2fb669d04484b2d4875d08bb4,
     type: 2}
+  teamObj: {fileID: 0}
   bulletSpawn: {fileID: 4634595259825638}
+  team: 0
 --- !u!114 &114999299630410534
 MonoBehaviour:
   m_ObjectHideFlags: 1

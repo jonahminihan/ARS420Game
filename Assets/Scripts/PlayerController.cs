@@ -64,6 +64,10 @@ public class PlayerController : NetworkBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            //CmdFire();
+            jump();
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse0)){
             CmdFire();
         }
 
@@ -79,6 +83,9 @@ public class PlayerController : NetworkBehaviour {
 
         NetworkServer.Spawn(bullet);
         Destroy(bullet, 2.0f);
+    }
+    void jump(){
+        motor.PerformJump();
     }
 
 }

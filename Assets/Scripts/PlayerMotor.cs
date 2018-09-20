@@ -11,6 +11,7 @@ public class PlayerMotor : MonoBehaviour {
     public Vector3 velocity = Vector3.zero;
     private Vector3 rotation = Vector3.zero;
     private Vector3 cameraRotation = Vector3.zero;
+    public float forceConst = 50;
 
 
     private Rigidbody rb;
@@ -79,6 +80,8 @@ public class PlayerMotor : MonoBehaviour {
         }*/
     }
 
-
+    public void PerformJump(){
+        rb.AddForce(0, forceConst, 0, ForceMode.Impulse);
+    }
 
 }
