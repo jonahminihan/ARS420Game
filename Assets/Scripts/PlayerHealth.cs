@@ -32,6 +32,11 @@ public class PlayerHealth : NetworkBehaviour {
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
+            // Getting the player team from the PlayerController script and passes team into scoreboard script
+            // As the current health = the player is destroyed and the Scoreboardscript adds a counter to the opposing team
+            int team = gameObject.GetComponent<PlayerController>().team;                      // gameObject is for the game object your script is on
+            GameObject.Find("Scoreboard").GetComponent<Scoreboardscript>().updatescore(team);       // GameObject any game object
+           
         }
         else
         {

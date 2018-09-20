@@ -12,7 +12,8 @@ public class TeamScript : MonoBehaviour {
 	}
 	
 
-    public int getTeam (){
+    public int getTeam ()
+    {
         if (team == 1){
             team = 0;
         }
@@ -20,6 +21,10 @@ public class TeamScript : MonoBehaviour {
             team = 1;
         }
         return team;
+
+
+
+
     }
 	// Update is called once per frame
 	void Update () {
