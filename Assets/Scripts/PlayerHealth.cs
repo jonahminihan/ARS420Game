@@ -70,9 +70,9 @@ public class PlayerHealth : NetworkBehaviour {
             transform.position = vect;
 
             quat.x = spawnPoints[randomInt].GetComponent<Transform>().rotation.x;
-            //quat.y = spawnPoints[randomInt].GetComponent<Transform>().rotation.y;
-            //quat.z = spawnPoints[randomInt].GetComponent<Transform>().rotation.z;
-            //transform.rotation = quat;
+            quat.y = spawnPoints[randomInt].GetComponent<Transform>().rotation.y;
+            quat.z = spawnPoints[randomInt].GetComponent<Transform>().rotation.z;
+            transform.rotation = quat;
             /**/
             //rb.MovePosition(Vector3.zero);
         }
