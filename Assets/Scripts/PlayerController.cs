@@ -14,6 +14,7 @@ public class PlayerController : NetworkBehaviour {
 
     private PlayerMotor motor;
     public GameObject bulletPrefab;
+    public GameObject bulletExplosPrefab;
     public GameObject teamObj;
     public Transform bulletSpawn;
     public int team = 0;
@@ -87,22 +88,29 @@ public class PlayerController : NetworkBehaviour {
         //This Function is done on the Server
         //create the bullet fromt he bullet prefab
         var bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
-
+        //var bulletExplos = (GameObject)Instantiate(bulletExplosPrefab, bulletSpawn.position, bulletSpawn.rotation);
         bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 12;
 
         NetworkServer.Spawn(bullet);
-       //timer = timer - Time.deltaTime;
+        //timer = timer - Time.deltaTime;
         //var timeTimer = new WaitForSeconds(1.5f);
         //yield WaitForSeconds(1.5f);
         //coroutine = StartCountdown();
         //StartCoroutine(StartCountdown());
         //StartCoroutine(coroutine);
         //if (timer <= 0){
-           //bullet.GetComponent<BulletScript>().Death();
-            //timer = 0.5f;
+        //bullet.GetComponent<BulletScript>().Death();
+        //timer = 0.5f;
         //}
+        /*
+         * Vector3 bulletPlace;
+        bulletPlace.x = bullet.transform.position.x;
+        bulletPlace.y = bullet.transform.position.y;
+        bulletPlace.z = bullet.transform.position.z;
 
-        Destroy(bullet, 2.0f);
+        */Destroy(bullet, 2.0f);
+        //var bulletExplos = (GameObject)Instantiate(bulletExplosPrefab, bulletPlace, bulletSpawn.rotation);
+        //NetworkServer.Spawn(bulletExplos);
 
     }
     void Jump(){ // lets player jump
