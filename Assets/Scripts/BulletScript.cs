@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour {
 
+    public void Death(){
+        //gameObject.GetComponentInChildren<Explosion>();
+        GameObject explos = this.gameObject.transform.GetChild(0).gameObject;
+        explos.GetComponent<MeshRenderer>().enabled = true;
+        explos.GetComponent<SphereCollider>().enabled = true;
 
+    }
     private void OnCollisionEnter(Collision collision)
     {
         var hit = collision.gameObject;

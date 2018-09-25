@@ -17,6 +17,10 @@ public class PlayerController : NetworkBehaviour {
     public GameObject teamObj;
     public Transform bulletSpawn;
     public int team = 0;
+    public GameObject hitObj;
+    private float timer = 1.5f;
+    public float currCountdownValue = 1.5f;
+    public IEnumerator coroutine;
 
     void Start()
     {
@@ -48,7 +52,6 @@ public class PlayerController : NetworkBehaviour {
         motor.Rotate(_rotation);
 
 
-
         //calculate camera rotation as a 3d vector: (turning around)
         float _xRot = Input.GetAxisRaw("Mouse Y");
 
@@ -64,6 +67,15 @@ public class PlayerController : NetworkBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            //CmdFire();
+            if(hitObj.name[0] == 'F'){ //check that character is on the floor
+                if(hitObj.name[1] == 'l'){
+                    Jump();
+                }
+            }
+
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse0)){
             CmdFire();
         }
 
@@ -72,13 +84,51 @@ public class PlayerController : NetworkBehaviour {
     [Command]
     void CmdFire()
     {
+        //This Function is done on the Server
         //create the bullet fromt he bullet prefab
         var bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
 
-        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 6;
+        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 12;
 
         NetworkServer.Spawn(bullet);
+       //timer = timer - Time.deltaTime;
+        //var timeTimer = new WaitForSeconds(1.5f);
+        //yield WaitForSeconds(1.5f);
+        //coroutine = StartCountdown();
+        //StartCoroutine(StartCountdown());
+        //StartCoroutine(coroutine);
+        //if (timer <= 0){
+           //bullet.GetComponent<BulletScript>().Death();
+            //timer = 0.5f;
+        //}
+
         Destroy(bullet, 2.0f);
+
+    }
+    void Jump(){ // lets player jump
+
+        motor.PerformJump(); 
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        var hit = collision.gameObject; //assign hit to collision object
+        //var health = hit.GetComponent<PlayerHealth>();
+        //var names = hit.name;
+        hitObj = hit; // assign collision hit to hitObj for jump
+
+
+
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        hitObj = gameObject; // reassign hitobj so that jump works
     }
 
+    public IEnumerator StartCountdown(){
+        //currCountdownValue = countdownValue;
+        //while (currCountdownValue > 0){
+            yield return new WaitForSeconds(2.0f);
+           //currCountdownValue--;
+        //}
+    }
 }
