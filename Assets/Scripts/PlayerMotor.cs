@@ -81,7 +81,7 @@ public class PlayerMotor : MonoBehaviour {
     }
 
     public void PerformJump(){
-        rb.AddForce(0, forceConst, 0, ForceMode.Impulse);
+        rb.AddForce(0, forceConst, 0, ForceMode.Impulse); // add a jump so for character
     }
 
 }
