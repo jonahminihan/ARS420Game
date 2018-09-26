@@ -241,6 +241,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e87a15b6887a0144ca277e4c042ba37d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletExplosPrefab: {fileID: 1676626377821032, guid: 28d3c382fb4454bf9adf127932529835,
+    type: 2}
 --- !u!135 &135198780690544038
 SphereCollider:
   m_ObjectHideFlags: 1

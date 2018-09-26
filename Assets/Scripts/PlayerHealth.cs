@@ -34,8 +34,8 @@ public class PlayerHealth : NetworkBehaviour {
             //Destroy(gameObject);
             // Getting the player team from the PlayerController script and passes team into scoreboard script
             // As the current health = the player is destroyed and the Scoreboardscript adds a counter to the opposing team
-            int team = gameObject.GetComponent<PlayerController>().team;                      // gameObject is for the game object your script is on
-            GameObject.Find("Scoreboard").GetComponent<Scoreboardscript>().updatescore(team);       // GameObject any game object
+            //int team = gameObject.GetComponent<PlayerController>().team;                      // gameObject is for the game object your script is on
+            //GameObject.Find("Scoreboard").GetComponent<Scoreboardscript>().updatescore(team);       // GameObject any game object
            
         }
         else
@@ -59,7 +59,7 @@ public class PlayerHealth : NetworkBehaviour {
     {
         if (isLocalPlayer)
         {
-            int randomInt = rand.Next(0, spawnPoints.Length -1);
+            int randomInt = rand.Next(0, spawnPoints.Length);
             // move back to zero location
             transform.position = Vector3.zero;
             // spawnPoints.
@@ -67,7 +67,7 @@ public class PlayerHealth : NetworkBehaviour {
             Quaternion quat = new Quaternion();
             vect = spawnPoints[randomInt].GetComponent<Transform>().position;
             vect.x = spawnPoints[randomInt].GetComponent<Transform>().position.x;
-            vect.y = spawnPoints[randomInt].GetComponent<Transform>().position.y;
+            vect.y = spawnPoints[randomInt].GetComponent<Transform>().position.y + 20;
             vect.z = spawnPoints[randomInt].GetComponent<Transform>().position.z;
             transform.position = vect;
 

@@ -14,16 +14,20 @@ public class PlayerController : NetworkBehaviour {
 
     private PlayerMotor motor;
     public GameObject bulletPrefab;
+    public GameObject bulletExplosPrefab;
     public GameObject teamObj;
     public Transform bulletSpawn;
     public int team = 0;
     public GameObject hitObj;
     private float timer = 1.5f;
+    public float fireRate = 1; // how fast someone can shoot
+    public float fireRateTimer = 0; //timer to see if enough time has passed to shoot again
     public float currCountdownValue = 1.5f;
     public IEnumerator coroutine;
 
     void Start()
     {
+        fireRateTimer = fireRate;
        teamObj = GameObject.Find("Teams");
         team = teamObj.GetComponent<TeamScript>().getTeam();  
         motor = GetComponent<PlayerMotor>();
@@ -75,8 +79,21 @@ public class PlayerController : NetworkBehaviour {
             }
 
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0)){
-            CmdFire();
+        if (Input.GetKeyDown(KeyCode.Mouse0)){ //check to shoot
+            fireRateTimer += Time.deltaTime;
+            //fireRateTimer += Time.unscaledDeltaTime;
+            if(fireRateTimer >= fireRate){//check if enough time has passed to shoot again
+                CmdFire(); //call the shoot function
+                fireRateTimer = 0;
+            }
+        }
+
+        if (hitObj.name[0] == 'K')
+        { //check that character is on the floor
+            if (hitObj.name[1] == 'i')
+            {
+                gameObject.GetComponent<PlayerHealth>().TakeDamage(1000);
+            }
         }
 
     }
@@ -87,22 +104,29 @@ public class PlayerController : NetworkBehaviour {
         //This Function is done on the Server
         //create the bullet fromt he bullet prefab
         var bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
-
+        //var bulletExplos = (GameObject)Instantiate(bulletExplosPrefab, bulletSpawn.position, bulletSpawn.rotation);
         bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 12;
 
         NetworkServer.Spawn(bullet);
-       //timer = timer - Time.deltaTime;
+        //timer = timer - Time.deltaTime;
         //var timeTimer = new WaitForSeconds(1.5f);
         //yield WaitForSeconds(1.5f);
         //coroutine = StartCountdown();
         //StartCoroutine(StartCountdown());
         //StartCoroutine(coroutine);
         //if (timer <= 0){
-           //bullet.GetComponent<BulletScript>().Death();
-            //timer = 0.5f;
+        //bullet.GetComponent<BulletScript>().Death();
+        //timer = 0.5f;
         //}
+        /*
+         * Vector3 bulletPlace;
+        bulletPlace.x = bullet.transform.position.x;
+        bulletPlace.y = bullet.transform.position.y;
+        bulletPlace.z = bullet.transform.position.z;
 
-        Destroy(bullet, 2.0f);
+        */Destroy(bullet, 2.0f);
+        //var bulletExplos = (GameObject)Instantiate(bulletExplosPrefab, bulletPlace, bulletSpawn.rotation);
+        //NetworkServer.Spawn(bulletExplos);
 
     }
     void Jump(){ // lets player jump
