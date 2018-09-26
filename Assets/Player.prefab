@@ -655,8 +655,8 @@ MonoBehaviour:
   currentHealth: 100
   destroyOnDeath: 0
   spawnPoints:
-  - {fileID: 1820696846535894, guid: 1bdfbbb15b9ae3149bd2d620bcd5ed2e, type: 2}
-  - {fileID: 1394705165383880, guid: 1bdfbbb15b9ae3149bd2d620bcd5ed2e, type: 2}
+  - {fileID: 1581083411122550, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}
+  - {fileID: 1348965327627470, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}
 --- !u!114 &114834769420992512
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -678,6 +678,8 @@ MonoBehaviour:
   bulletSpawn: {fileID: 4634595259825638}
   team: 0
   hitObj: {fileID: 0}
+  fireRate: 0.1
+  fireRateTimer: 0
   currCountdownValue: 1.5
 --- !u!114 &114999299630410534
 MonoBehaviour:

@@ -59,7 +59,7 @@ public class PlayerHealth : NetworkBehaviour {
     {
         if (isLocalPlayer)
         {
-            int randomInt = rand.Next(0, spawnPoints.Length -1);
+            int randomInt = rand.Next(0, spawnPoints.Length);
             // move back to zero location
             transform.position = Vector3.zero;
             // spawnPoints.

@@ -20,11 +20,14 @@ public class PlayerController : NetworkBehaviour {
     public int team = 0;
     public GameObject hitObj;
     private float timer = 1.5f;
+    public float fireRate = 1; // how fast someone can shoot
+    public float fireRateTimer = 0; //timer to see if enough time has passed to shoot again
     public float currCountdownValue = 1.5f;
     public IEnumerator coroutine;
 
     void Start()
     {
+        fireRateTimer = fireRate;
        teamObj = GameObject.Find("Teams");
         team = teamObj.GetComponent<TeamScript>().getTeam();  
         motor = GetComponent<PlayerMotor>();
@@ -76,8 +79,21 @@ public class PlayerController : NetworkBehaviour {
             }
 
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0)){
-            CmdFire();
+        if (Input.GetKeyDown(KeyCode.Mouse0)){ //check to shoot
+            fireRateTimer += Time.deltaTime;
+            //fireRateTimer += Time.unscaledDeltaTime;
+            if(fireRateTimer >= fireRate){//check if enough time has passed to shoot again
+                CmdFire(); //call the shoot function
+                fireRateTimer = 0;
+            }
+        }
+
+        if (hitObj.name[0] == 'K')
+        { //check that character is on the floor
+            if (hitObj.name[1] == 'i')
+            {
+                gameObject.GetComponent<PlayerHealth>().TakeDamage(1000);
+            }
         }
 
     }
