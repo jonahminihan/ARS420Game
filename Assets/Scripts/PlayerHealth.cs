@@ -25,8 +25,10 @@ public class PlayerHealth : NetworkBehaviour {
 
     public void TakeDamage(int amount)
     {
+        Debug.Log("take damage1");
         if (!isServer)
         {
+            Debug.Log("take damage is server");
             return;
         }
         if (currentHealth <= 0)
@@ -42,9 +44,10 @@ public class PlayerHealth : NetworkBehaviour {
         {
 
             currentHealth -= amount;
-
+            Debug.Log("take damage2");
             if (currentHealth <= 0)
             {
+                Debug.Log("take damage3");
                 currentHealth = maxHealth;
                 Debug.Log("dead");
                 RpcRespawn();
