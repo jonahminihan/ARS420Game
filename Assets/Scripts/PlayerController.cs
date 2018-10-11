@@ -15,11 +15,13 @@ public class PlayerController : NetworkBehaviour {
     private PlayerMotor motor;
     public GameObject bulletPrefab;
     public GameObject crossBowBolt;
+    public GameObject energyRifleBullet;
     private GameObject currentBullet; //corresponds to which gun is equiped
     public GameObject bulletExplosPrefab;
     public GameObject teamObj;
     public Transform bulletSpawn;
     public Transform bulletSpawnRL;
+    public Transform bulletSpawnER;
     public Transform currentBulletSpawn;
     public int team = 0;
     public GameObject hitObj;
@@ -39,10 +41,10 @@ public class PlayerController : NetworkBehaviour {
 
     void Start()
     {
-        gunCollection[0] = false;
-        gunCollection[0] = false;
-        gunCollection[0] = false;
-        gunCollection[0] = false;
+        gunCollection[0] = true;
+        gunCollection[1] = false;
+        gunCollection[2] = false;
+        gunCollection[3] = false;
         fireRateTimer = fireRate;
        teamObj = GameObject.Find("Teams");
         team = teamObj.GetComponent<TeamScript>().getTeam();  
@@ -156,6 +158,13 @@ public class PlayerController : NetworkBehaviour {
 
 
         }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            changeGun(gunName.sniper);
+            Debug.Log("ER");
+
+
+        }
 
     }
 
@@ -246,6 +255,8 @@ public class PlayerController : NetworkBehaviour {
             temp.SetActive(true);
             temp = gun1.transform.GetChild(0).gameObject; //get CB on gameobject
             temp.SetActive(false);
+            temp = gun1.transform.GetChild(4).gameObject; //get ER on gameobject
+            temp.SetActive(false);
         }
         if (gun == gunName.crossBow) // CB
         {
@@ -261,6 +272,8 @@ public class PlayerController : NetworkBehaviour {
             temp.SetActive(false);
             temp = gun1.transform.GetChild(0).gameObject; //get CB on gameobject
             temp.SetActive(true);
+            temp = gun1.transform.GetChild(4).gameObject; //get ER on gameobject
+            temp.SetActive(false);
             //currentBullet.gameObject.transform.rotation.y = 90f;
         }
         if (gun == gunName.sword) // Sword
@@ -272,6 +285,18 @@ public class PlayerController : NetworkBehaviour {
         {
             fireRate = 1; // how fast someone can shoot
             fireRateTimer = 0; //timer to see if enough time has passed to shoot again
+            currentBullet = energyRifleBullet;
+            currentBulletSpawn = bulletSpawnER;
+            bulletVelocity = 20f;
+            GameObject temp;
+            GameObject gun1 = gameObject.transform.GetChild(1).gameObject; //grabs the camera of this game object
+            gun1 = gun1.transform.GetChild(0).gameObject; //get gun on GameObject
+            temp = gun1.transform.GetChild(2).gameObject; //get RL on gameobject
+            temp.SetActive(false);
+            temp = gun1.transform.GetChild(0).gameObject; //get CB on gameobject
+            temp.SetActive(false);
+            temp = gun1.transform.GetChild(4).gameObject; //get ER on gameobject
+            temp.SetActive(true);
         }
     }
 }

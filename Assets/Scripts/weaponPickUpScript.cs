@@ -22,6 +22,13 @@ public class weaponPickUpScript : NetworkBehaviour {
                 controller.gunCollection[0] = true;
             }
         }
+        if (gameObject.name[0] == 'c')
+        {
+            if (gameObject.name[1] == 'r')
+            {
+                controller.gunCollection[1] = true;
+            }
+        }
         //controller.gunCollection[0] = true;
         //CmdDestroy();
         Destroy(gameObject);

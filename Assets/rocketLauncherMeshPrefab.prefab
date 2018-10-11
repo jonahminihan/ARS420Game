@@ -19,28 +19,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4485271892791210}
-  - component: {fileID: 65770623444439884}
-  - component: {fileID: 114422069129183868}
-  - component: {fileID: 114728115294720674}
+  - component: {fileID: 33455477354671458}
+  - component: {fileID: 23446160363308862}
   m_Layer: 0
   m_Name: rocketLauncherMeshPrefab
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1506257976756374
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4992290683544198}
-  - component: {fileID: 33056343137205286}
-  - component: {fileID: 23089908419393696}
-  m_Layer: 0
-  m_Name: RocketCannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,33 +34,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1348777914493508}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 2.84, y: 17.74, z: 128.56}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4992290683544198}
+  m_LocalRotation: {x: 0, y: 0, z: 0.70420057, w: 0.7100011}
+  m_LocalPosition: {x: 0.0049816733, y: 0.029734045, z: 0}
+  m_LocalScale: {x: 12.82208, y: 15.10153, z: 12.82207}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!4 &4992290683544198
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1506257976756374}
-  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -0.216, y: -0.242, z: -0.376}
-  m_LocalScale: {x: 12.822021, y: 15.10149, z: 12.822021}
-  m_Children: []
-  m_Father: {fileID: 4485271892791210}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
---- !u!23 &23089908419393696
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23446160363308862
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1506257976756374}
+  m_GameObject: {fileID: 1348777914493508}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -88,7 +56,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: e0435491d3e034689aeb516683174943, type: 3}
+  - {fileID: 2100000, guid: 9d251bc0f8637a64c99b4e6e619acfae, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -108,65 +76,10 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33056343137205286
+--- !u!33 &33455477354671458
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1506257976756374}
-  m_Mesh: {fileID: 4300000, guid: e0435491d3e034689aeb516683174943, type: 3}
---- !u!65 &65770623444439884
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1348777914493508}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.2955346, z: 2.0361652}
-  m_Center: {x: 0, y: -0.185292, z: -0.2883889}
---- !u!114 &114422069129183868
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1348777914493508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e640635ba74d29a7f97b7d51f1cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114728115294720674
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1348777914493508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 95
-    i1: 252
-    i2: 8
-    i3: 194
-    i4: 190
-    i5: 85
-    i6: 132
-    i7: 209
-    i8: 186
-    i9: 5
-    i10: 151
-    i11: 77
-    i12: 55
-    i13: 239
-    i14: 146
-    i15: 125
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_Mesh: {fileID: 4300000, guid: 9d251bc0f8637a64c99b4e6e619acfae, type: 3}
