@@ -14,23 +14,45 @@ public class PlayerController : NetworkBehaviour {
 
     private PlayerMotor motor;
     public GameObject bulletPrefab;
+    public GameObject crossBowBolt;
+    public GameObject energyRifleBullet;
+    private GameObject currentBullet; //corresponds to which gun is equiped
     public GameObject bulletExplosPrefab;
     public GameObject teamObj;
     public Transform bulletSpawn;
+    public Transform bulletSpawnRL;
+    public Transform bulletSpawnER;
+    public Transform currentBulletSpawn;
     public int team = 0;
     public GameObject hitObj;
     private float timer = 1.5f;
-    public float fireRate = 1; // how fast someone can shoot
+    public float fireRate = 1.0f; // how fast someone can shoot
     public float fireRateTimer = 0; //timer to see if enough time has passed to shoot again
     public float currCountdownValue = 1.5f;
+    public float bulletVelocity = 12;
     public IEnumerator coroutine;
+    public bool[] gunCollection = new bool [4];
+
+    //RL = 0, CB = 1, Sword = 2, Sniper = 3
+    enum gunName { rocketLauncher, crossBow, sword, sniper };
+    gunName currentGun = gunName.crossBow;
+
+
 
     void Start()
     {
+        gunCollection[0] = true;
+        gunCollection[1] = false;
+        gunCollection[2] = false;
+        gunCollection[3] = false;
         fireRateTimer = fireRate;
        teamObj = GameObject.Find("Teams");
         team = teamObj.GetComponent<TeamScript>().getTeam();  
         motor = GetComponent<PlayerMotor>();
+        currentBulletSpawn = bulletSpawn;
+        changeGun(currentGun);
+        hitObj = gameObject;
+
     }
 
     private void Update()
@@ -79,21 +101,69 @@ public class PlayerController : NetworkBehaviour {
             }
 
         }
+        fireRateTimer += Time.deltaTime; // this was in the function below, but wasnt updating
         if (Input.GetKeyDown(KeyCode.Mouse0)){ //check to shoot
-            fireRateTimer += Time.deltaTime;
+
             //fireRateTimer += Time.unscaledDeltaTime;
             if(fireRateTimer >= fireRate){//check if enough time has passed to shoot again
                 CmdFire(); //call the shoot function
                 fireRateTimer = 0;
+                Debug.Log("shoot");
+
+            }
+        }
+        if(currentGun == gunName.crossBow){
+
+            if (Input.GetKey(KeyCode.Mouse0))
+            { //check to shoot
+
+                //fireRateTimer += Time.unscaledDeltaTime;
+                if (fireRateTimer >= fireRate)
+                {//check if enough time has passed to shoot again
+                    CmdFire(); //call the shoot function
+                    fireRateTimer = 0;
+                    Debug.Log("shoot");
+
+                }
             }
         }
 
-        if (hitObj.name[0] == 'K')
+        if (hitObj != null && hitObj.name[0] == 'K')
         { //check that character is on the floor
             if (hitObj.name[1] == 'i')
             {
-                gameObject.GetComponent<PlayerHealth>().TakeDamage(1000);
+                //Debug.Log("killbox");
+                //var health = gameObject.GetComponent<PlayerHealth>();
+                //  health.TakeDamage(10);
+                //gameObject.GetComponent<PlayerHealth>().TakeDamage(1000);
+
+                //GetComponent<PlayerHealth>().TakeDamage(100);
+                CmdKillBox();
             }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if (gunCollection[0] == true)
+            {
+                changeGun(gunName.rocketLauncher);
+                Debug.Log("RL");
+            }
+
+
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            changeGun(gunName.crossBow);
+            Debug.Log("CB");
+
+
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            changeGun(gunName.sniper);
+            Debug.Log("ER");
+
+
         }
 
     }
@@ -103,7 +173,18 @@ public class PlayerController : NetworkBehaviour {
     {
         //This Function is done on the Server
         //create the bullet fromt he bullet prefab
-        var bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+        //var bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+        /*Quaternion quat = new Quaternion();
+        quat.x = bulletSpawn.rotation.x + 90f;
+        quat.y = bulletSpawn.rotation.y;
+        quat.z = bulletSpawn.rotation.z;*/
+        var bullet = (GameObject)Instantiate(currentBullet, currentBulletSpawn.position, currentBulletSpawn.rotation);
+        //Quaternion quat = new Quaternion();
+        //quat.x = bulletSpawn.rotation.x;
+        //quat.y = 90f;
+        //quat.z = bulletSpawn.rotation.z;
+        //bullet.GetComponent<Rigidbody>().MoveRotation(quat);// = quat.y;
+
         //var bulletExplos = (GameObject)Instantiate(bulletExplosPrefab, bulletSpawn.position, bulletSpawn.rotation);
         bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 12;
 
@@ -154,5 +235,68 @@ public class PlayerController : NetworkBehaviour {
             yield return new WaitForSeconds(2.0f);
            //currCountdownValue--;
         //}
+    }
+    [Command]
+    public void CmdKillBox(){
+        gameObject.GetComponent<PlayerHealth>().TakeDamage(1000);
+    }
+
+    private void changeGun(gunName gun){
+        if (gun == gunName.rocketLauncher){ // RL
+            fireRate = 2.0f; // how fast someone can shoot
+            fireRateTimer = 0; //timer to see if enough time has passed to shoot again
+            currentBullet = bulletPrefab;
+            currentBulletSpawn = bulletSpawnRL;
+            bulletVelocity = 12f;
+            GameObject temp;
+            GameObject gun1 = gameObject.transform.GetChild(1).gameObject; //grabs the camera of this game object
+            gun1 = gun1.transform.GetChild(0).gameObject; //get gun on GameObject
+            temp = gun1.transform.GetChild(2).gameObject; //get RL on gameobject
+            temp.SetActive(true);
+            temp = gun1.transform.GetChild(0).gameObject; //get CB on gameobject
+            temp.SetActive(false);
+            temp = gun1.transform.GetChild(4).gameObject; //get ER on gameobject
+            temp.SetActive(false);
+        }
+        if (gun == gunName.crossBow) // CB
+        {
+            fireRate = 0.1f; // how fast someone can shoot
+            fireRateTimer = 0; //timer to see if enough time has passed to shoot again
+            currentBullet = crossBowBolt;
+            currentBulletSpawn = bulletSpawn;
+            bulletVelocity = 20f;
+            GameObject temp;
+            GameObject gun1 = gameObject.transform.GetChild(1).gameObject; //grabs the camera of this game object
+            gun1 = gun1.transform.GetChild(0).gameObject; //get gun on GameObject
+            temp = gun1.transform.GetChild(2).gameObject; //get RL on gameobject
+            temp.SetActive(false);
+            temp = gun1.transform.GetChild(0).gameObject; //get CB on gameobject
+            temp.SetActive(true);
+            temp = gun1.transform.GetChild(4).gameObject; //get ER on gameobject
+            temp.SetActive(false);
+            //currentBullet.gameObject.transform.rotation.y = 90f;
+        }
+        if (gun == gunName.sword) // Sword
+        {
+            fireRate = 1; // how fast someone can shoot
+            fireRateTimer = 0; //timer to see if enough time has passed to shoot again
+        }
+        if (gun == gunName.sniper) // Sniper
+        {
+            fireRate = 1; // how fast someone can shoot
+            fireRateTimer = 0; //timer to see if enough time has passed to shoot again
+            currentBullet = energyRifleBullet;
+            currentBulletSpawn = bulletSpawnER;
+            bulletVelocity = 20f;
+            GameObject temp;
+            GameObject gun1 = gameObject.transform.GetChild(1).gameObject; //grabs the camera of this game object
+            gun1 = gun1.transform.GetChild(0).gameObject; //get gun on GameObject
+            temp = gun1.transform.GetChild(2).gameObject; //get RL on gameobject
+            temp.SetActive(false);
+            temp = gun1.transform.GetChild(0).gameObject; //get CB on gameobject
+            temp.SetActive(false);
+            temp = gun1.transform.GetChild(4).gameObject; //get ER on gameobject
+            temp.SetActive(true);
+        }
     }
 }
