@@ -19,6 +19,9 @@ public class PlayerHealth : NetworkBehaviour {
     private Rigidbody rb;
     public void Start()
     {
+        Debug.Log(spawnPoints[0].GetComponent<Transform>().position.x);
+        Debug.Log(spawnPoints[0].GetComponent<Transform>().position.y);
+        Debug.Log(spawnPoints[0].GetComponent<Transform>().position.z);
         rb = GetComponent<Rigidbody>();
     }
 
@@ -70,7 +73,7 @@ public class PlayerHealth : NetworkBehaviour {
             Quaternion quat = new Quaternion();
             vect = spawnPoints[randomInt].GetComponent<Transform>().position;
             vect.x = spawnPoints[randomInt].GetComponent<Transform>().position.x;
-            vect.y = spawnPoints[randomInt].GetComponent<Transform>().position.y + 20;
+            vect.y = spawnPoints[randomInt].GetComponent<Transform>().position.y;
             vect.z = spawnPoints[randomInt].GetComponent<Transform>().position.z;
             transform.position = vect;
 
