@@ -50,8 +50,8 @@ public class PlayerController : NetworkBehaviour {
     private GameObject blueTeamScoreUI;
     private GameObject scoreboard;
     private Canvas canv;
-
-
+    private GameObject lobbyWait;
+    public bool lobbyActive = false;
     void Start()
     {
         gunCollection[0] = true;
@@ -79,6 +79,8 @@ public class PlayerController : NetworkBehaviour {
         redTeamScoreUI.GetComponent<Text>().text = scoreboard.GetComponent<Scoreboardscript>().teams0score.ToString();
         blueTeamScoreUI.GetComponent<Text>().text = scoreboard.GetComponent<Scoreboardscript>().teams1score.ToString();
 
+        lobbyWait = GameObject.Find("lobbyWait");
+
     }
 
     private void Update()
@@ -98,7 +100,10 @@ public class PlayerController : NetworkBehaviour {
         //final movement vector
         Vector3 _velocity = (_movHorizontal + _movVertical).normalized * speed;// normalized keeps speed consistent
         //apply movement
-        motor.Move(_velocity);
+        if(lobbyActive == true){
+            motor.Move(_velocity);
+        }
+
 
 
         //calculate rotation as a 3d vector: (turning around)
@@ -118,7 +123,14 @@ public class PlayerController : NetworkBehaviour {
         //Apply rotation
         motor.RotateCamera(_cameraRotation);
         motor.RotateBulletSpawn(_cameraRotation);
-        
+
+
+        //check lobby full
+        if (lobbyWait.GetComponent<lobbyWait>().lobbyGood == true){
+            lobbyActive = true;
+        }
+
+
         /////////////////////////////////////////////////////////////////////////////
         ////Movement and camera Done
         /////////////////////////////////////////////////////////////////////////////
@@ -134,7 +146,7 @@ public class PlayerController : NetworkBehaviour {
 
         }
         fireRateTimer += Time.deltaTime; // this was in the function below, but wasnt updating
-        if (ammoCount > 0)
+        if (ammoCount > 0 && lobbyActive == true)
         {
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
