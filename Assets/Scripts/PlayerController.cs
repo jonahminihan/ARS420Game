@@ -32,7 +32,7 @@ public class PlayerController : NetworkBehaviour {
     public float reloadTime = 3.0f; // how long it takes to reload
     public float reloadTimer = 0.0f; //timer to see if enough time has passed to reload
     public float currCountdownValue = 1.5f;
-    public float bulletVelocity = 12;
+    public float bulletVelocity = 35;
     public int ammoCount = 30;
     public int maxAmmoCount = 30;
     public IEnumerator coroutine;
@@ -243,7 +243,7 @@ public class PlayerController : NetworkBehaviour {
         var bullet = (GameObject)Instantiate(currentBullet, currentBulletSpawn.position, currentBulletSpawn.rotation);
 
         //var bulletExplos = (GameObject)Instantiate(bulletExplosPrefab, bulletSpawn.position, bulletSpawn.rotation);
-        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 12;
+        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * bulletVelocity;
 
         NetworkServer.Spawn(bullet);
         Destroy(bullet, 2.0f);
@@ -291,7 +291,7 @@ public class PlayerController : NetworkBehaviour {
             fireRateTimer = 0; //timer to see if enough time has passed to shoot again
             currentBullet = bulletPrefab;
             currentBulletSpawn = bulletSpawnRL;
-            bulletVelocity = 12f;
+            bulletVelocity = 40f;
             GameObject temp;
             GameObject gun1 = gameObject.transform.GetChild(1).gameObject; //grabs the camera of this game object
             gun1 = gun1.transform.GetChild(0).gameObject; //get gun on GameObject
@@ -311,7 +311,7 @@ public class PlayerController : NetworkBehaviour {
             fireRateTimer = 0; //timer to see if enough time has passed to shoot again
             currentBullet = crossBowBolt;
             currentBulletSpawn = bulletSpawn;
-            bulletVelocity = 20f;
+            bulletVelocity = 35f;
 
 
 
@@ -341,7 +341,7 @@ public class PlayerController : NetworkBehaviour {
             fireRateTimer = 0; //timer to see if enough time has passed to shoot again
             currentBullet = energyRifleBullet;
             currentBulletSpawn = bulletSpawnER;
-            bulletVelocity = 20f;
+            bulletVelocity = 35f;
             GameObject temp;
             GameObject gun1 = gameObject.transform.GetChild(1).gameObject; //grabs the camera of this game object
             gun1 = gun1.transform.GetChild(0).gameObject; //get gun on GameObject
