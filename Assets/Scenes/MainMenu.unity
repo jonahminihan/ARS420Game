@@ -113,18 +113,13 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &1816799926
+--- !u!1001 &133084854
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114510116336405048, guid: 91efa26b025894faba0210d6ed13b8a6,
-        type: 2}
-      propertyPath: m_SpawnPrefabs.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4162818427059690, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}
       propertyPath: m_LocalPosition.x
       value: -90.78
@@ -156,27 +151,6 @@ Prefab:
     - target: {fileID: 4162818427059690, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1596761275427684, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}
-      propertyPath: m_Name
-      value: _NetworkManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 114510116336405048, guid: 91efa26b025894faba0210d6ed13b8a6,
-        type: 2}
-      propertyPath: m_SpawnPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 1083475777870840, guid: f925a1919e13b4702bc098dbf328f2e3,
-        type: 2}
-    - target: {fileID: 114510116336405048, guid: 91efa26b025894faba0210d6ed13b8a6,
-        type: 2}
-      propertyPath: m_SpawnPrefabs.Array.data[4]
-      value: 
-      objectReference: {fileID: 1477672408546658, guid: 71a367d77959e4367b515d630cac9e63,
-        type: 2}
-    - target: {fileID: 114510116336405048, guid: 91efa26b025894faba0210d6ed13b8a6,
-        type: 2}
-      propertyPath: m_OnlineScene
-      value: alpha maptest
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}
