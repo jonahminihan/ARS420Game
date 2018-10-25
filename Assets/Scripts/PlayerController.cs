@@ -17,7 +17,11 @@ public class PlayerController : NetworkBehaviour {
     public GameObject bulletPrefab;
     public GameObject crossBowBolt;
     public GameObject energyRifleBullet;
+    public GameObject localBulletPrefab;
+    public GameObject localCrossBowBolt;
+    public GameObject localEnergyRifleBullet;
     private GameObject currentBullet; //corresponds to which gun is equiped
+    private GameObject localCurrentBullet;
     public GameObject bulletExplosPrefab;
     public GameObject teamObj;
     public Transform bulletSpawn;
@@ -32,7 +36,13 @@ public class PlayerController : NetworkBehaviour {
     public float reloadTime = 3.0f; // how long it takes to reload
     public float reloadTimer = 0.0f; //timer to see if enough time has passed to reload
     public float currCountdownValue = 1.5f;
-    public float bulletVelocity = 35;
+
+    private float bulletVelocity = 5;
+    public float bulletVelocityRL = 40;
+    private float bulletVelocityCB = 55.0f;
+    public float bulletVelocityER = 70;
+
+
     public int ammoCount = 30;
     public int maxAmmoCount = 30;
     public IEnumerator coroutine;
@@ -54,6 +64,7 @@ public class PlayerController : NetworkBehaviour {
     public bool lobbyActive = false;
     void Start()
     {
+        bulletVelocity = bulletVelocityCB;
         gunCollection[0] = true;
         gunCollection[1] = false;
         gunCollection[2] = false;
@@ -64,9 +75,11 @@ public class PlayerController : NetworkBehaviour {
         motor = GetComponent<PlayerMotor>();
         currentBulletSpawn = bulletSpawn;
         changeGun(currentGun);
+        CmdchangeGun(currentGun);
         hitObj = gameObject;
-        characterUI = gameObject.transform.GetChild(1).gameObject; //grabs the camera of this game object
-        characterUI = characterUI.transform.GetChild(1).gameObject; //get character UI on GameObject
+        characterUI = GameObject.Find("characterUI");
+        //characterUI = gameObject.transform.GetChild(1).gameObject; //grabs the camera of this game object
+        //characterUI = characterUI.transform.GetChild(1).gameObject; //get character UI on GameObject
         characterUI = characterUI.transform.GetChild(0).gameObject; //get image on gameobject
         ammoUI = characterUI.transform.GetChild(0).gameObject; //get ammo on gameobject
         healthUI = characterUI.transform.GetChild(1).gameObject; //get ammo on gameobject
@@ -88,9 +101,10 @@ public class PlayerController : NetworkBehaviour {
         //Character UI
         ammoUI.GetComponent<Text>().text = ammoCount.ToString();
         healthUI.GetComponent<Text>().text = gameObject.GetComponent<PlayerHealth>().currentHealth.ToString();
-        redTeamScoreUI.GetComponent<Text>().text = scoreboard.GetComponent<Scoreboardscript>().teams0score.ToString();
-        blueTeamScoreUI.GetComponent<Text>().text = scoreboard.GetComponent<Scoreboardscript>().teams1score.ToString();
-       
+        //redTeamScoreUI.GetComponent<Text>().text = scoreboard.GetComponent<Scoreboardscript>().teams0score.ToString();
+        //blueTeamScoreUI.GetComponent<Text>().text = scoreboard.GetComponent<Scoreboardscript>().teams1score.ToString();
+        CmdUpdateScore();
+
 
         //Calculate movement veloxity as a 3d vector
         float _xMov = Input.GetAxisRaw("Horizontal");
@@ -156,6 +170,7 @@ public class PlayerController : NetworkBehaviour {
                 if (fireRateTimer >= fireRate)
                 {//check if enough time has passed to shoot again
                     CmdFire(); //call the shoot function
+                    //localFire();
                     fireRateTimer = 0;
                     Debug.Log("shoot");
                     ammoCount--;
@@ -172,6 +187,7 @@ public class PlayerController : NetworkBehaviour {
                     if (fireRateTimer >= fireRate)
                     {//check if enough time has passed to shoot again
                         CmdFire(); //call the shoot function
+                        //localFire();
                         fireRateTimer = 0;
                         Debug.Log("shoot");
                         ammoCount--;
@@ -205,6 +221,8 @@ public class PlayerController : NetworkBehaviour {
             if (gunCollection[0] == true)
             {
                 changeGun(gunName.rocketLauncher);
+                CmdchangeGun(gunName.rocketLauncher);
+                RpcchangeGun(gunName.rocketLauncher);
                 Debug.Log("RL");
             }
 
@@ -212,14 +230,18 @@ public class PlayerController : NetworkBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            CmdchangeGun(gunName.crossBow);
             changeGun(gunName.crossBow);
+            RpcchangeGun(gunName.crossBow);
             Debug.Log("CB");
 
 
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
+            CmdchangeGun(gunName.sniper);
             changeGun(gunName.sniper);
+            RpcchangeGun(gunName.sniper);
             Debug.Log("ER");
 
 
@@ -249,6 +271,20 @@ public class PlayerController : NetworkBehaviour {
         Destroy(bullet, 2.0f);
 
     }
+
+    void localFire()
+    {
+
+        var bullet = (GameObject)Instantiate(localCurrentBullet, currentBulletSpawn.position, currentBulletSpawn.rotation);
+
+        //var bulletExplos = (GameObject)Instantiate(bulletExplosPrefab, bulletSpawn.position, bulletSpawn.rotation);
+        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * bulletVelocity;
+
+       NetworkServer.Spawn(bullet);
+        Destroy(bullet, 2.0f);
+
+    }
+
     void Jump(){ // lets player jump
 
         motor.PerformJump(); 
@@ -290,8 +326,88 @@ public class PlayerController : NetworkBehaviour {
             fireRate = 2.0f; // how fast someone can shoot
             fireRateTimer = 0; //timer to see if enough time has passed to shoot again
             currentBullet = bulletPrefab;
+            localCurrentBullet = localBulletPrefab;
             currentBulletSpawn = bulletSpawnRL;
-            bulletVelocity = 40f;
+            bulletVelocity = bulletVelocityRL;
+            GameObject temp;
+            GameObject gun1 = gameObject.transform.GetChild(1).gameObject; //grabs the camera of this game object
+            gun1 = gun1.transform.GetChild(0).gameObject; //get gun on GameObject
+            temp = gun1.transform.GetChild(2).gameObject; //get RL on gameobject
+            temp.SetActive(true);
+            temp = gun1.transform.GetChild(0).gameObject; //get CB on gameobject
+            temp.SetActive(false);
+            temp = gun1.transform.GetChild(4).gameObject; //get ER on gameobject
+            temp.SetActive(false);
+        }
+        if (gun == gunName.crossBow) // CB
+        {
+            reloadTime = 3.0f;
+            maxAmmoCount = 30;
+            ammoCount = maxAmmoCount;
+            fireRate = 0.1f; // how fast someone can shoot
+            fireRateTimer = 0; //timer to see if enough time has passed to shoot again
+            currentBullet = crossBowBolt;
+            localCurrentBullet = localCrossBowBolt;
+            currentBulletSpawn = bulletSpawn;
+            bulletVelocity = bulletVelocityCB;
+
+
+
+
+            GameObject temp;
+            GameObject gun1 = gameObject.transform.GetChild(1).gameObject; //grabs the camera of this game object
+            gun1 = gun1.transform.GetChild(0).gameObject; //get gun on GameObject
+            temp = gun1.transform.GetChild(2).gameObject; //get RL on gameobject
+            temp.SetActive(false);
+            temp = gun1.transform.GetChild(0).gameObject; //get CB on gameobject
+            temp.SetActive(true);
+            temp = gun1.transform.GetChild(4).gameObject; //get ER on gameobject
+            temp.SetActive(false);
+            //currentBullet.gameObject.transform.rotation.y = 90f;
+        }
+        if (gun == gunName.sword) // Sword
+        {
+            fireRate = 1; // how fast someone can shoot
+            fireRateTimer = 0; //timer to see if enough time has passed to shoot again
+        }
+        if (gun == gunName.sniper) // Sniper
+        {
+            reloadTime = 3.0f;
+            maxAmmoCount = 10;
+            ammoCount = maxAmmoCount;
+            fireRate = 1; // how fast someone can shoot
+            fireRateTimer = 0; //timer to see if enough time has passed to shoot again
+            currentBullet = energyRifleBullet;
+            localCurrentBullet = localEnergyRifleBullet;
+            currentBulletSpawn = bulletSpawnER;
+            bulletVelocity = bulletVelocityER;
+            GameObject temp;
+            GameObject gun1 = gameObject.transform.GetChild(1).gameObject; //grabs the camera of this game object
+            gun1 = gun1.transform.GetChild(0).gameObject; //get gun on GameObject
+            temp = gun1.transform.GetChild(2).gameObject; //get RL on gameobject
+            temp.SetActive(false);
+            temp = gun1.transform.GetChild(0).gameObject; //get CB on gameobject
+            temp.SetActive(false);
+            temp = gun1.transform.GetChild(4).gameObject; //get ER on gameobject
+            temp.SetActive(true);
+        }
+    }
+
+    [Command]
+    private void CmdchangeGun(gunName gun)
+    {
+        if (gun == gunName.rocketLauncher)
+        { // RL
+
+            reloadTime = 2.0f;
+            maxAmmoCount = 1;
+            ammoCount = maxAmmoCount;
+
+            fireRate = 2.0f; // how fast someone can shoot
+            fireRateTimer = 0; //timer to see if enough time has passed to shoot again
+            currentBullet = bulletPrefab;
+            currentBulletSpawn = bulletSpawnRL;
+            bulletVelocity = bulletVelocityRL;
             GameObject temp;
             GameObject gun1 = gameObject.transform.GetChild(1).gameObject; //grabs the camera of this game object
             gun1 = gun1.transform.GetChild(0).gameObject; //get gun on GameObject
@@ -311,7 +427,7 @@ public class PlayerController : NetworkBehaviour {
             fireRateTimer = 0; //timer to see if enough time has passed to shoot again
             currentBullet = crossBowBolt;
             currentBulletSpawn = bulletSpawn;
-            bulletVelocity = 35f;
+            bulletVelocity = bulletVelocityCB;
 
 
 
@@ -341,7 +457,7 @@ public class PlayerController : NetworkBehaviour {
             fireRateTimer = 0; //timer to see if enough time has passed to shoot again
             currentBullet = energyRifleBullet;
             currentBulletSpawn = bulletSpawnER;
-            bulletVelocity = 35f;
+            bulletVelocity = bulletVelocityER;
             GameObject temp;
             GameObject gun1 = gameObject.transform.GetChild(1).gameObject; //grabs the camera of this game object
             gun1 = gun1.transform.GetChild(0).gameObject; //get gun on GameObject
@@ -352,5 +468,91 @@ public class PlayerController : NetworkBehaviour {
             temp = gun1.transform.GetChild(4).gameObject; //get ER on gameobject
             temp.SetActive(true);
         }
+    }
+
+    [ClientRpc]
+    private void RpcchangeGun(gunName gun)
+    {
+        if (gun == gunName.rocketLauncher)
+        { // RL
+
+            reloadTime = 2.0f;
+            maxAmmoCount = 1;
+            ammoCount = maxAmmoCount;
+
+            fireRate = 2.0f; // how fast someone can shoot
+            fireRateTimer = 0; //timer to see if enough time has passed to shoot again
+            currentBullet = bulletPrefab;
+            currentBulletSpawn = bulletSpawnRL;
+            bulletVelocity = bulletVelocityRL;
+            GameObject temp;
+            GameObject gun1 = gameObject.transform.GetChild(1).gameObject; //grabs the camera of this game object
+            gun1 = gun1.transform.GetChild(0).gameObject; //get gun on GameObject
+            temp = gun1.transform.GetChild(2).gameObject; //get RL on gameobject
+            temp.SetActive(true);
+            temp = gun1.transform.GetChild(0).gameObject; //get CB on gameobject
+            temp.SetActive(false);
+            temp = gun1.transform.GetChild(4).gameObject; //get ER on gameobject
+            temp.SetActive(false);
+        }
+        if (gun == gunName.crossBow) // CB
+        {
+            reloadTime = 3.0f;
+            maxAmmoCount = 30;
+            ammoCount = maxAmmoCount;
+            fireRate = 0.1f; // how fast someone can shoot
+            fireRateTimer = 0; //timer to see if enough time has passed to shoot again
+            currentBullet = crossBowBolt;
+            currentBulletSpawn = bulletSpawn;
+            bulletVelocity = bulletVelocityCB;
+
+
+
+
+            GameObject temp;
+            GameObject gun1 = gameObject.transform.GetChild(1).gameObject; //grabs the camera of this game object
+            gun1 = gun1.transform.GetChild(0).gameObject; //get gun on GameObject
+            temp = gun1.transform.GetChild(2).gameObject; //get RL on gameobject
+            temp.SetActive(false);
+            temp = gun1.transform.GetChild(0).gameObject; //get CB on gameobject
+            temp.SetActive(true);
+            temp = gun1.transform.GetChild(4).gameObject; //get ER on gameobject
+            temp.SetActive(false);
+            //currentBullet.gameObject.transform.rotation.y = 90f;
+        }
+        if (gun == gunName.sword) // Sword
+        {
+            fireRate = 1; // how fast someone can shoot
+            fireRateTimer = 0; //timer to see if enough time has passed to shoot again
+        }
+        if (gun == gunName.sniper) // Sniper
+        {
+            reloadTime = 3.0f;
+            maxAmmoCount = 10;
+            ammoCount = maxAmmoCount;
+            fireRate = 1; // how fast someone can shoot
+            fireRateTimer = 0; //timer to see if enough time has passed to shoot again
+            currentBullet = energyRifleBullet;
+            currentBulletSpawn = bulletSpawnER;
+            bulletVelocity = bulletVelocityER;
+            GameObject temp;
+            GameObject gun1 = gameObject.transform.GetChild(1).gameObject; //grabs the camera of this game object
+            gun1 = gun1.transform.GetChild(0).gameObject; //get gun on GameObject
+            temp = gun1.transform.GetChild(2).gameObject; //get RL on gameobject
+            temp.SetActive(false);
+            temp = gun1.transform.GetChild(0).gameObject; //get CB on gameobject
+            temp.SetActive(false);
+            temp = gun1.transform.GetChild(4).gameObject; //get ER on gameobject
+            temp.SetActive(true);
+        }
+    }
+
+    [Command]
+    private void CmdUpdateScore(){
+
+        redTeamScoreUI.GetComponent<Text>().text = scoreboard.GetComponent<Scoreboardscript>().teams0score.ToString();
+        blueTeamScoreUI.GetComponent<Text>().text = scoreboard.GetComponent<Scoreboardscript>().teams1score.ToString();
+
+
     }
 }

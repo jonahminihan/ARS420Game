@@ -7,7 +7,9 @@ public class lobbyWait : NetworkBehaviour {
 
     private GameObject lobbyUI;
     private Canvas canv;
+    [SyncVar]
     public bool lobbyGood = false; // check if lobby is ready for player to start
+    [SyncVar]
     public bool canvActive;
     public int minPlayerCount = 4;
     // Use this for initialization
