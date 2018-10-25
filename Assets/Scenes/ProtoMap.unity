@@ -1668,7 +1668,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 144fafb731a4b4944b48596f3688afb4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.9
+      value: -75.3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 144fafb731a4b4944b48596f3688afb4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4435,11 +4435,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114510116336405048, guid: 91efa26b025894faba0210d6ed13b8a6,
-        type: 2}
-      propertyPath: m_SpawnPrefabs.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4162818427059690, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4478,10 +4473,13 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114510116336405048, guid: 91efa26b025894faba0210d6ed13b8a6,
         type: 2}
-      propertyPath: m_SpawnPrefabs.Array.data[2]
+      propertyPath: m_OfflineScene
       value: 
-      objectReference: {fileID: 1348777914493508, guid: 5ffc08c2be5584d1ba05974d37ef927d,
-        type: 2}
+      objectReference: {fileID: 0}
+    - target: {fileID: 1596761275427684, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}
   m_IsPrefabAsset: 0
