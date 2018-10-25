@@ -1143,8 +1143,8 @@ MonoBehaviour:
   currentHealth: 100
   destroyOnDeath: 0
   spawnPoints:
-  - {fileID: 1581083411122550, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}
-  - {fileID: 1760614065503704, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 1644744808874178, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}
   - {fileID: 1318894195211482, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}
   - {fileID: 1260481744465494, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}
