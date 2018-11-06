@@ -26,6 +26,7 @@ public class weaponSpawnerScript : NetworkBehaviour {
         RLRespawnTime += Time.deltaTime;
         if(RLRespawnTime >= RLMaxRespawnTime){
             CmdSpawnRL();
+            RpcSpawnRL();
             RLRespawnTime = 0;
         }
 
@@ -41,6 +42,17 @@ public class weaponSpawnerScript : NetworkBehaviour {
 
     [Command]
     public void CmdSpawnRL(){
+        //This Function is done on the Server
+
+        var RL = (GameObject)Instantiate(RLPrefab, RLRespawnPoint.position, RLRespawnPoint.rotation);
+
+        NetworkServer.Spawn(RL);
+
+
+    }
+    [ClientRpc]
+    public void RpcSpawnRL()
+    {
         //This Function is done on the Server
 
         var RL = (GameObject)Instantiate(RLPrefab, RLRespawnPoint.position, RLRespawnPoint.rotation);

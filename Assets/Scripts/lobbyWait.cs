@@ -11,7 +11,7 @@ public class lobbyWait : NetworkBehaviour {
     public bool lobbyGood = false; // check if lobby is ready for player to start
     [SyncVar]
     public bool canvActive;
-    public int minPlayerCount = 4;
+    public int minPlayerCount = 2;
     // Use this for initialization
     void Start () {
         lobbyUI = gameObject.transform.GetChild(0).gameObject; //grabs the camera of this game object
@@ -32,19 +32,33 @@ public class lobbyWait : NetworkBehaviour {
         {
 
             Debug.Log("canActive true");
-            if (NetworkServer.connections.Count < minPlayerCount)
+            if (NetworkServer.connections.Count <= minPlayerCount)
             {
                 canv.enabled = true;
             }
             else {
                 canv.enabled = false;
                 lobbyGood = true;
-            }
+                RpcturnCanvasOff();
+                }
 
         }
         else{
             canv.enabled = false;
             lobbyGood = true;
-        }
+            RpcturnCanvasOff();
+            }
 	}
+
+    [ClientRpc] //should fix probs?
+    public void RpcturnCanvasOff(){
+        canv.enabled = false;
+        lobbyGood = true;
+    }
+    [Command]
+    public void CmdturnCanvasOff()
+    {
+        canv.enabled = false;
+        lobbyGood = true;
+    }
 }
