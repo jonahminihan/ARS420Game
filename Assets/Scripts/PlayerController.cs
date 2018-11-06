@@ -65,8 +65,8 @@ public class PlayerController : NetworkBehaviour {
     void Start()
     {
         bulletVelocity = bulletVelocityCB;
-        gunCollection[0] = true;
-        gunCollection[1] = false;
+        gunCollection[0] = false;
+        gunCollection[1] = true;
         gunCollection[2] = false;
         gunCollection[3] = false;
         fireRateTimer = fireRate;
@@ -170,7 +170,8 @@ public class PlayerController : NetworkBehaviour {
                 if (fireRateTimer >= fireRate)
                 {//check if enough time has passed to shoot again
                     CmdFire(); //call the shoot function
-                    //localFire();
+                    localFire();
+                    RpcFire();
                     fireRateTimer = 0;
                     Debug.Log("shoot");
                     ammoCount--;
@@ -187,7 +188,8 @@ public class PlayerController : NetworkBehaviour {
                     if (fireRateTimer >= fireRate)
                     {//check if enough time has passed to shoot again
                         CmdFire(); //call the shoot function
-                        //localFire();
+                        localFire();
+                        RpcFire();
                         fireRateTimer = 0;
                         Debug.Log("shoot");
                         ammoCount--;
@@ -230,19 +232,25 @@ public class PlayerController : NetworkBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            CmdchangeGun(gunName.crossBow);
-            changeGun(gunName.crossBow);
-            RpcchangeGun(gunName.crossBow);
-            Debug.Log("CB");
+            if (gunCollection[1] == true)
+            {
+                CmdchangeGun(gunName.crossBow);
+                changeGun(gunName.crossBow);
+                RpcchangeGun(gunName.crossBow);
+                Debug.Log("CB");
+            }
 
 
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            CmdchangeGun(gunName.sniper);
-            changeGun(gunName.sniper);
-            RpcchangeGun(gunName.sniper);
-            Debug.Log("ER");
+            if (gunCollection[3] == true)
+            {
+                CmdchangeGun(gunName.sniper);
+                changeGun(gunName.sniper);
+                RpcchangeGun(gunName.sniper);
+                Debug.Log("ER");
+            }
 
 
         }
@@ -272,9 +280,30 @@ public class PlayerController : NetworkBehaviour {
 
     }
 
-    void localFire()
+    [ClientRpc]
+    void RpcFire()
     {
 
+        if (currentGun != gunName.rocketLauncher)
+        {
+
+
+            var bullet = (GameObject)Instantiate(localCurrentBullet, currentBulletSpawn.position, currentBulletSpawn.rotation);
+
+            //var bulletExplos = (GameObject)Instantiate(bulletExplosPrefab, bulletSpawn.position, bulletSpawn.rotation);
+            bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * bulletVelocity;
+
+            NetworkServer.Spawn(bullet);
+            Destroy(bullet, 2.0f);
+        }
+
+    }
+
+    void localFire()
+    {
+        if(currentGun != gunName.rocketLauncher){
+
+       
         var bullet = (GameObject)Instantiate(localCurrentBullet, currentBulletSpawn.position, currentBulletSpawn.rotation);
 
         //var bulletExplos = (GameObject)Instantiate(bulletExplosPrefab, bulletSpawn.position, bulletSpawn.rotation);
@@ -282,6 +311,7 @@ public class PlayerController : NetworkBehaviour {
 
        NetworkServer.Spawn(bullet);
         Destroy(bullet, 2.0f);
+        }
 
     }
 
@@ -318,7 +348,7 @@ public class PlayerController : NetworkBehaviour {
 
     private void changeGun(gunName gun){
         if (gun == gunName.rocketLauncher){ // RL
-
+            currentGun = gunName.rocketLauncher;
             reloadTime = 2.0f;
             maxAmmoCount = 1;
             ammoCount = maxAmmoCount;
@@ -341,6 +371,7 @@ public class PlayerController : NetworkBehaviour {
         }
         if (gun == gunName.crossBow) // CB
         {
+            currentGun = gunName.crossBow;
             reloadTime = 3.0f;
             maxAmmoCount = 30;
             ammoCount = maxAmmoCount;
@@ -367,11 +398,13 @@ public class PlayerController : NetworkBehaviour {
         }
         if (gun == gunName.sword) // Sword
         {
+            currentGun = gunName.sword;
             fireRate = 1; // how fast someone can shoot
             fireRateTimer = 0; //timer to see if enough time has passed to shoot again
         }
         if (gun == gunName.sniper) // Sniper
         {
+            currentGun = gunName.sniper;
             reloadTime = 3.0f;
             maxAmmoCount = 10;
             ammoCount = maxAmmoCount;
