@@ -10,7 +10,8 @@ public class healthSpawnScript : NetworkBehaviour{
     public float healthMaxRespawnTime = 10f;
     public float healthRespawnTime = 0f;
     public Transform healthRespawnPoint;
-
+    public GameObject spawnedHealth1;
+    public GameObject spawnedHealth2;
     //Crossbow info
     //public GameObject CBPrefab;
     //public float CBMaxRespawnTime = 10f;
@@ -20,8 +21,10 @@ public class healthSpawnScript : NetworkBehaviour{
     void Start()
     {
         //RLPrefab = gameObject.transform.GetChild(0).gameObject;
-        CmdSpawnHealth(healthRespawnPoint.position, healthRespawnPoint.rotation);
-        RpcSpawnHealth(healthRespawnPoint.position, healthRespawnPoint.rotation);
+       //CmdSpawnHealth(healthRespawnPoint.position, healthRespawnPoint.rotation, spawnedHealth1);
+        CmdSpawnHealth1(healthRespawnPoint.position, healthRespawnPoint.rotation);
+        RpcSpawnHealth1(healthRespawnPoint.position, healthRespawnPoint.rotation);
+        //RpcSpawnHealth(healthRespawnPoint.position, healthRespawnPoint.rotation, ref spawnedHealth1);
     }
 
     // Update is called once per frame
@@ -30,16 +33,20 @@ public class healthSpawnScript : NetworkBehaviour{
         healthRespawnTime += Time.deltaTime;
         if (healthRespawnTime >= healthMaxRespawnTime)
         {
-            CmdSpawnHealth(healthRespawnPoint.position, healthRespawnPoint.rotation);
-            RpcSpawnHealth(healthRespawnPoint.position, healthRespawnPoint.rotation);
+            //CmdSpawnHealth(healthRespawnPoint.position, healthRespawnPoint.rotation, spawnedHealth1);
+            CmdSpawnHealth1(healthRespawnPoint.position, healthRespawnPoint.rotation);
+            //RpcSpawnHealth(healthRespawnPoint.position, healthRespawnPoint.rotation, ref spawnedHealth1);
+            RpcSpawnHealth1(healthRespawnPoint.position, healthRespawnPoint.rotation);
             healthRespawnTime = 0;
         }
 
         health2RespawnTime += Time.deltaTime;
         if (health2RespawnTime >= healthMaxRespawnTime)
         {
-            CmdSpawnHealth(health2RespawnPoint.position, health2RespawnPoint.rotation);
-            RpcSpawnHealth(health2RespawnPoint.position, health2RespawnPoint.rotation);
+  //          CmdSpawnHealth(health2RespawnPoint.position, health2RespawnPoint.rotation, spawnedHealth2);
+//            RpcSpawnHealth(health2RespawnPoint.position, health2RespawnPoint.rotation, spawnedHealth2);
+            CmdSpawnHealth2(health2RespawnPoint.position, health2RespawnPoint.rotation);
+            RpcSpawnHealth2(health2RespawnPoint.position, health2RespawnPoint.rotation);
             health2RespawnTime = 0;
         }
         //CmdSpawnRL();
@@ -47,24 +54,88 @@ public class healthSpawnScript : NetworkBehaviour{
 
 
     [Command]
-    public void CmdSpawnHealth(Vector3 healthSpawnPos, Quaternion healthSpawnRot)
+    public void CmdSpawnHealth(Vector3 healthSpawnPos, Quaternion healthSpawnRot, GameObject spawnedHealth)
     {
         //This Function is done on the Server
 
-        var RL = (GameObject)Instantiate(healthPrefab, healthSpawnPos, healthSpawnRot);
+        if (spawnedHealth == null)
+        {
+            var RL = (GameObject)Instantiate(healthPrefab, healthSpawnPos, healthSpawnRot);
+            spawnedHealth = RL;
+            NetworkServer.Spawn(RL);
 
-        NetworkServer.Spawn(RL);
+        }
+
+
+    }
+    [Command]
+    public void CmdSpawnHealth1(Vector3 healthSpawnPos, Quaternion healthSpawnRot)
+    {
+        //This Function is done on the Server
+
+        if (spawnedHealth1 == null)
+        {
+            var RL = (GameObject)Instantiate(healthPrefab, healthSpawnPos, healthSpawnRot);
+            spawnedHealth1 = RL;
+            NetworkServer.Spawn(RL);
+
+        }
+
+
+    }
+    [Command]
+    public void CmdSpawnHealth2(Vector3 healthSpawnPos, Quaternion healthSpawnRot)
+    {
+        //This Function is done on the Server
+
+        if (spawnedHealth2 == null)
+        {
+            var RL = (GameObject)Instantiate(healthPrefab, healthSpawnPos, healthSpawnRot);
+            spawnedHealth2 = RL;
+            NetworkServer.Spawn(RL);
+
+        }
 
 
     }
     [ClientRpc]
-    public void RpcSpawnHealth(Vector3 healthSpawnPos, Quaternion healthSpawnRot)
+    public void RpcSpawnHealth(Vector3 healthSpawnPos, Quaternion healthSpawnRot, GameObject spawnedHealth)
     {
         //This Function is done on the Server
+        if (spawnedHealth == null){
+            var RL = (GameObject)Instantiate(healthPrefab, healthSpawnPos, healthSpawnRot);
+            spawnedHealth = RL;
+            NetworkServer.Spawn(RL);
 
-        var RL = (GameObject)Instantiate(healthPrefab, healthSpawnPos, healthSpawnRot);
+        }
 
-        NetworkServer.Spawn(RL);
+
+    }
+    [ClientRpc]
+    public void RpcSpawnHealth1(Vector3 healthSpawnPos, Quaternion healthSpawnRot)
+    {
+        //This Function is done on the Server
+        if (spawnedHealth1 == null)
+        {
+            var RL = (GameObject)Instantiate(healthPrefab, healthSpawnPos, healthSpawnRot);
+            spawnedHealth1 = RL;
+            NetworkServer.Spawn(RL);
+
+        }
+
+
+    }
+    [ClientRpc]
+    public void RpcSpawnHealth2(Vector3 healthSpawnPos, Quaternion healthSpawnRot)
+    {
+        //This Function is done on the Server
+        if (spawnedHealth2 == null)
+        {
+            var RL = (GameObject)Instantiate(healthPrefab, healthSpawnPos, healthSpawnRot);
+            spawnedHealth2 = RL;
+            NetworkServer.Spawn(RL);
+
+        }
 
 
     }
