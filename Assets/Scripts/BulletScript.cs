@@ -39,7 +39,7 @@ public class BulletScript : NetworkBehaviour {
         var health = hit.GetComponent<PlayerHealth>();
         if (health != null)
         {
-            health.TakeDamage(34);
+            health.TakeDamage(50);
 
         }
         Destroy(gameObject);
