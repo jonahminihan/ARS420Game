@@ -192,7 +192,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1596761275427684}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -90.78, y: -19.3, z: -29.02}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4762666890270458}
@@ -266,7 +266,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1348965327627470}
   m_LocalRotation: {x: -0, y: -0.71678525, z: -0, w: -0.69729406}
-  m_LocalPosition: {x: -153.63, y: 6.76, z: -54.95}
+  m_LocalPosition: {x: 44, y: 2, z: 27}
   m_LocalScale: {x: 1.0000005, y: 1, z: 1.0000005}
   m_Children: []
   m_Father: {fileID: 4162818427059690}
@@ -292,7 +292,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1581083411122550}
   m_LocalRotation: {x: -0, y: 0.7638205, z: -0, w: 0.6454288}
-  m_LocalPosition: {x: -186.5, y: -1.2, z: -1.3}
+  m_LocalPosition: {x: -19, y: 2, z: 16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4162818427059690}
@@ -322,7 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 227461547, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 0}
+  manager: {fileID: 114510116336405048}
   showGUI: 1
   offsetX: 0
   offsetY: 0
@@ -401,12 +401,12 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
-  m_PlayerPrefab: {fileID: 1740569473174536, guid: 78bda853b4f1e36488baedf6f7cadf88,
+  m_PlayerPrefab: {fileID: 1365712627756854, guid: d18cadb76f286be45aa69b30415eed24,
     type: 2}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 1
   m_OfflineScene: MainMenu
-  m_OnlineScene: alpha map2
+  m_OnlineScene: alpha map
   m_SpawnPrefabs:
   - {fileID: 1091776530429202, guid: 3d97c4b2fb669d04484b2d4875d08bb4, type: 2}
   - {fileID: 1676626377821032, guid: 28d3c382fb4454bf9adf127932529835, type: 2}
