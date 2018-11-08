@@ -34,6 +34,7 @@ public class weaponSpawnerScript : NetworkBehaviour {
         if (CBRespawnTime >= CBMaxRespawnTime)
         {
             CmdSpawnCB();
+            RpcSpawnCB();
             CBRespawnTime = 0;
         }
         //CmdSpawnRL();
@@ -63,6 +64,17 @@ public class weaponSpawnerScript : NetworkBehaviour {
     }
     [Command]
     public void CmdSpawnCB()
+    {
+        //This Function is done on the Server
+
+        var CB = (GameObject)Instantiate(CBPrefab, CBRespawnPoint.position, CBRespawnPoint.rotation);
+
+        NetworkServer.Spawn(CB);
+
+
+    }
+    [ClientRpc]
+    public void RpcSpawnCB()
     {
         //This Function is done on the Server
 
