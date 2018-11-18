@@ -1,0 +1,222 @@
+fileFormatVersion: 2
+guid: 4ba8c1439a63b9b448e398d614c5d10a
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: chest
+    100002: head
+    100004: hips
+    100006: L_anke
+    100008: L_arm
+    100010: L_elbow
+    100012: L_foot
+    100014: L_knee
+    100016: L_leg
+    100018: L_middle1
+    100020: L_middle2
+    100022: L_middle3
+    100024: L_pink1
+    100026: L_pink2
+    100028: L_pink3
+    100030: L_point1
+    100032: L_point2
+    100034: L_point3
+    100036: L_ring1
+    100038: L_ring2
+    100040: L_ring3
+    100042: L_shoulder
+    100044: L_thumb1
+    100046: L_thumb2
+    100048: L_thumb3
+    100050: L_wrist
+    100052: //RootNode
+    100054: neck
+    100056: R_anke
+    100058: R_arm
+    100060: R_elbow
+    100062: R_foot
+    100064: R_knee
+    100066: R_leg
+    100068: R_middle1
+    100070: R_middle2
+    100072: R_middle3
+    100074: R_pink1
+    100076: R_pink2
+    100078: R_pink3
+    100080: R_point1
+    100082: R_point2
+    100084: R_point3
+    100086: R_ring1
+    100088: R_ring2
+    100090: R_ring3
+    100092: R_shoulder
+    100094: R_thumb1
+    100096: R_thumb2
+    100098: R_thumb3
+    100100: R_wrist
+    100102: spine
+    400000: chest
+    400002: head
+    400004: hips
+    400006: L_anke
+    400008: L_arm
+    400010: L_elbow
+    400012: L_foot
+    400014: L_knee
+    400016: L_leg
+    400018: L_middle1
+    400020: L_middle2
+    400022: L_middle3
+    400024: L_pink1
+    400026: L_pink2
+    400028: L_pink3
+    400030: L_point1
+    400032: L_point2
+    400034: L_point3
+    400036: L_ring1
+    400038: L_ring2
+    400040: L_ring3
+    400042: L_shoulder
+    400044: L_thumb1
+    400046: L_thumb2
+    400048: L_thumb3
+    400050: L_wrist
+    400052: //RootNode
+    400054: neck
+    400056: R_anke
+    400058: R_arm
+    400060: R_elbow
+    400062: R_foot
+    400064: R_knee
+    400066: R_leg
+    400068: R_middle1
+    400070: R_middle2
+    400072: R_middle3
+    400074: R_pink1
+    400076: R_pink2
+    400078: R_pink3
+    400080: R_point1
+    400082: R_point2
+    400084: R_point3
+    400086: R_ring1
+    400088: R_ring2
+    400090: R_ring3
+    400092: R_shoulder
+    400094: R_thumb1
+    400096: R_thumb2
+    400098: R_thumb3
+    400100: R_wrist
+    400102: spine
+    7400000: Pistol Walk Backward
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Pistol Walk Backward
+      takeName: mixamo.com
+      firstFrame: 0
+      lastFrame: 31
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
