@@ -16,7 +16,7 @@ public class lobbyWait : NetworkBehaviour {
     void Start () {
         lobbyUI = gameObject.transform.GetChild(0).gameObject; //grabs the camera of this game object
         canv = lobbyUI.GetComponent<Canvas>();
-        canvActive = false;
+        canvActive = true;
     }
 	
 	// Update is called once per frame
@@ -48,9 +48,10 @@ public class lobbyWait : NetworkBehaviour {
 
         }
         else{
+            //Debug.Log("canActive false");
             canv.enabled = false;
             lobbyGood = true;
-            RpcturnCanvasOff();
+            //RpcturnCanvasOff();
             }
 	}
 

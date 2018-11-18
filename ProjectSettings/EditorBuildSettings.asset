@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/alpha map2.unity
     guid: 5964d9a107cd5634a8c798cc737870a3
+  - enabled: 1
+    path: Assets/Scenes/betamap2TJ.unity
+    guid: e856e9ee5ac743941b54d1409522e488
   m_configObjects: {}
