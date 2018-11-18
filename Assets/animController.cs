@@ -15,14 +15,19 @@ public class animController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+
         if (Input.GetKey(KeyCode.W))
         {
             anim.Play("Pistol Walk");
         }
 
-        else if(Input.GetKey(KeyCode.A) || (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W)))
+        else if(Input.GetKey(KeyCode.A))
         {
-            anim.Play("Pistol Walk Arc Left");
+            anim.Play("Pistol Walk Left");
+        }
+        else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W))
+        {
+            anim.Play("Pistol Idle"); // need diagonal movement
         }
 
         else if (Input.GetKey(KeyCode.S))
@@ -30,9 +35,13 @@ public class animController : MonoBehaviour {
             anim.Play("Pistol Walk Backward");
         }
 
-        else if (Input.GetKey(KeyCode.D) || (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W)))
+        else if (Input.GetKey(KeyCode.D))
         {
-            anim.Play("Pistol Walk Arc Right");
+            anim.Play("Pistol Walk Right");
+        }
+        else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
+        {
+            anim.Play("Pistol Idle"); // need diagonal movement
         }
 
         else if (Input.GetKey(KeyCode.Space))

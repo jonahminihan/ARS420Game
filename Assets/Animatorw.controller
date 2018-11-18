@@ -52,7 +52,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Pistol Walk Arc Right
+  m_Name: Pistol Walk Right
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -65,7 +65,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 9d68ed01801724a478996a7e63136ed4, type: 3}
+  m_Motion: {fileID: 7400000, guid: 2401ff35634395c42a5dff4203b3d28e, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -140,7 +140,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 243f53b80da1a0c468298b5a8023a2af, type: 3}
+  m_Motion: {fileID: 7400000, guid: 4ba8c1439a63b9b448e398d614c5d10a, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -152,7 +152,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Pistol Walk Arc Left
+  m_Name: Pistol Walk Left
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -165,7 +165,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 153672cadfc10634b85b727882533736, type: 3}
+  m_Motion: {fileID: 7400000, guid: 1ca530874e8470148b8c9bbe91b9f59d, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -190,7 +190,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 8bed4e69ccd44344cba42ddcc8e0c340, type: 3}
+  m_Motion: {fileID: 7400000, guid: 25e323bf6cc5cfd4bb8668e580d48cf3, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -265,7 +265,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 0278f619b06be2042b88acf8319cbae2, type: 3}
+  m_Motion: {fileID: 7400000, guid: 4bbcff635845cfa459dce9d117dca6b4, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -290,7 +290,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 67bc57f442a07064695c02ffe3f1746f, type: 3}
+  m_Motion: {fileID: 7400000, guid: 794d9c8d4f6afe0459520945aa4c8831, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
