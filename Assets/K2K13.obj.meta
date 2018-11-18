@@ -1,0 +1,151 @@
+fileFormatVersion: 2
+guid: 317de2367b0ef694ea746b974b6d33e7
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: belt
+    100002: cloth
+    100004: glove_L
+    100006: glove_R
+    100008: helm
+    100010: //RootNode
+    100012: knee_L
+    100014: knee_R
+    100016: polySurface11
+    100018: polySurface12
+    100020: polySurface7
+    400000: belt
+    400002: cloth
+    400004: glove_L
+    400006: glove_R
+    400008: helm
+    400010: //RootNode
+    400012: knee_L
+    400014: knee_R
+    400016: polySurface11
+    400018: polySurface12
+    400020: polySurface7
+    2100000: beltMat
+    2100002: clothMat
+    2100004: glove_LMat
+    2100006: glove_RMat
+    2100008: helmMat
+    2100010: knee_LMat
+    2100012: knee_RMat
+    2100014: polySurface11Mat
+    2100016: polySurface12Mat
+    2100018: polySurface7Mat
+    2300000: belt
+    2300002: cloth
+    2300004: glove_L
+    2300006: glove_R
+    2300008: helm
+    2300010: knee_L
+    2300012: knee_R
+    2300014: polySurface11
+    2300016: polySurface12
+    2300018: polySurface7
+    3300000: belt
+    3300002: cloth
+    3300004: glove_L
+    3300006: glove_R
+    3300008: helm
+    3300010: knee_L
+    3300012: knee_R
+    3300014: polySurface11
+    3300016: polySurface12
+    3300018: polySurface7
+    4300000: belt
+    4300002: cloth
+    4300004: glove_L
+    4300006: glove_R
+    4300008: helm
+    4300010: knee_L
+    4300012: knee_R
+    4300014: polySurface11
+    4300016: polySurface12
+    4300018: polySurface7
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
