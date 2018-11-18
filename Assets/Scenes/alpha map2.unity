@@ -152,11 +152,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 23783973663255554, guid: 78bda853b4f1e36488baedf6f7cadf88,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b3bd7d165e6bbec47ba378339cf81a61, type: 2}
+    - target: {fileID: 1740569473174536, guid: 78bda853b4f1e36488baedf6f7cadf88, type: 2}
+      propertyPath: m_Name
+      value: Player (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 114722661043677894, guid: 78bda853b4f1e36488baedf6f7cadf88,
         type: 2}
       propertyPath: spawnPoints.Array.data[0]
@@ -167,22 +166,11 @@ Prefab:
       propertyPath: spawnPoints.Array.data[1]
       value: 
       objectReference: {fileID: 1053207256}
-    - target: {fileID: 1740569473174536, guid: 78bda853b4f1e36488baedf6f7cadf88, type: 2}
-      propertyPath: m_Name
-      value: Player (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1740569473174536, guid: 78bda853b4f1e36488baedf6f7cadf88, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1242093277194520, guid: 78bda853b4f1e36488baedf6f7cadf88, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376324378162736, guid: 78bda853b4f1e36488baedf6f7cadf88, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 23783973663255554, guid: 78bda853b4f1e36488baedf6f7cadf88,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b3bd7d165e6bbec47ba378339cf81a61, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78bda853b4f1e36488baedf6f7cadf88, type: 2}
   m_IsPrefabAsset: 0
@@ -1719,7 +1707,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lobbyGood: 0
   canvActive: 0
-  minPlayerCount: 4
 --- !u!114 &1179476804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2037,6 +2024,8 @@ MonoBehaviour:
   healthMaxRespawnTime: 10
   healthRespawnTime: 0
   healthRespawnPoint: {fileID: 1856522735}
+  spawnedHealth1: {fileID: 0}
+  spawnedHealth2: {fileID: 0}
   health2RespawnTime: 0
   health2RespawnPoint: {fileID: 18160680}
 --- !u!114 &1365595194
@@ -2680,6 +2669,11 @@ Prefab:
     - target: {fileID: 1596761275427684, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}
       propertyPath: m_Name
       value: _NetworkManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 114510116336405048, guid: 91efa26b025894faba0210d6ed13b8a6,
+        type: 2}
+      propertyPath: m_OnlineScene
+      value: alpha map2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}

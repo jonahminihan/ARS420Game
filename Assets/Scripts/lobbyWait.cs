@@ -11,7 +11,7 @@ public class lobbyWait : NetworkBehaviour {
     public bool lobbyGood = false; // check if lobby is ready for player to start
     [SyncVar]
     public bool canvActive;
-    public int minPlayerCount = 2;
+    private int minPlayerCount = 2;
     // Use this for initialization
     void Start () {
         lobbyUI = gameObject.transform.GetChild(0).gameObject; //grabs the camera of this game object
@@ -28,17 +28,21 @@ public class lobbyWait : NetworkBehaviour {
          {
              canv.enabled = true;
          }*/
-        if (canvActive == true)
+        if (canvActive == true && isServer)
         {
 
             Debug.Log("canActive true");
-            if (NetworkServer.connections.Count <= minPlayerCount)
+            Debug.Log("place1");
+            if (NetworkServer.connections.Count < minPlayerCount)
             {
                 canv.enabled = true;
+                Debug.Log("place2 " + NetworkServer.connections.Count);
+                Debug.Log("minPC " + minPlayerCount);
             }
             else {
                 canv.enabled = false;
                 lobbyGood = true;
+                Debug.Log("place3 " + NetworkServer.connections.Count);
                 RpcturnCanvasOff();
                 }
 
