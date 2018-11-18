@@ -13,7 +13,28 @@ public class PlayerController : NetworkBehaviour {
     [SerializeField]
     private float lookSensitivity = 3f;
 
+
+    //HandleSound
+    public AudioClip shootSoundCB;
+    public AudioClip shootSoundRL;
+    public AudioClip shootSoundER;
+    public AudioClip jumpSound;
+    public AudioClip runSound;
+    private float gunSoundVol;
+    private float runSoundVol;
+    public AudioSource source;
+
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+
     private PlayerMotor motor;
+    public Texture red;
+    public Texture blue;
+    private Renderer rendererSkin;
+    private GameObject playerModel;
     public GameObject bulletPrefab;
     public GameObject crossBowBolt;
     public GameObject energyRifleBullet;
@@ -70,8 +91,9 @@ public class PlayerController : NetworkBehaviour {
         gunCollection[2] = false;
         gunCollection[3] = false;
         fireRateTimer = fireRate;
-       teamObj = GameObject.Find("Teams");
-        team = teamObj.GetComponent<TeamScript>().getTeam();  
+        teamObj = GameObject.Find("Teams");
+        team = teamObj.GetComponent<TeamScript>().getTeam(); 
+        //change texture---------------------------------------------------------------------
         motor = GetComponent<PlayerMotor>();
         currentBulletSpawn = bulletSpawn;
         changeGun(currentGun);
@@ -85,6 +107,19 @@ public class PlayerController : NetworkBehaviour {
         healthUI = characterUI.transform.GetChild(1).gameObject; //get ammo on gameobject
         ammoUI.GetComponent < Text > ().text = ammoCount.ToString();
 
+        playerModel = gameObject.transform.GetChild(0).gameObject;
+        playerModel = playerModel.transform.GetChild(0).gameObject;
+        rendererSkin = playerModel.GetComponent<Renderer>();
+        if(team == 0){
+            rendererSkin.material.SetTexture("_MainTex", blue);
+        }
+        else{
+            rendererSkin.material.SetTexture("_MainTex", red);
+
+        }
+
+
+
         healthUI.GetComponent<Text>().text = gameObject.GetComponent<PlayerHealth>().currentHealth.ToString();
         scoreboard = GameObject.Find("Scoreboard");
         redTeamScoreUI = characterUI.transform.GetChild(2).gameObject; //get ammo on gameobject
@@ -93,7 +128,9 @@ public class PlayerController : NetworkBehaviour {
         blueTeamScoreUI.GetComponent<Text>().text = scoreboard.GetComponent<Scoreboardscript>().teams1score.ToString();
 
         lobbyWait = GameObject.Find("lobbyWait");
-
+        gunSoundVol = 0.05f;
+        runSoundVol = 0.5f;
+        source = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -116,6 +153,7 @@ public class PlayerController : NetworkBehaviour {
         //apply movement
         if(lobbyActive == true){
             motor.Move(_velocity);
+           
         }
 
 
@@ -155,9 +193,18 @@ public class PlayerController : NetworkBehaviour {
             if(hitObj.name[0] == 'F'){ //check that character is on the floor
                 if(hitObj.name[1] == 'l'){
                     Jump();
+                    source.PlayOneShot(jumpSound, runSoundVol);
                 }
             }
 
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            source.PlayOneShot(runSound, runSoundVol);
+
+        }
+        if(Input.GetKeyUp(KeyCode.W)){
+            source.Stop();
         }
         fireRateTimer += Time.deltaTime; // this was in the function below, but wasnt updating
         if (ammoCount > 0 && lobbyActive == true)
@@ -175,6 +222,7 @@ public class PlayerController : NetworkBehaviour {
                     fireRateTimer = 0;
                     Debug.Log("shoot");
                     ammoCount--;
+                   //source.PlayOneShot(shootSound, .5f);
 
                 }
             }
@@ -276,6 +324,19 @@ public class PlayerController : NetworkBehaviour {
         bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * bulletVelocity;
 
         NetworkServer.Spawn(bullet);
+        //source.PlayOneShot(shootSoundCB, .5f);
+        if (currentGun == gunName.rocketLauncher)
+        { // RL
+            source.PlayOneShot(shootSoundRL, gunSoundVol);
+        }
+        if (currentGun == gunName.crossBow)
+        { // RL
+            source.PlayOneShot(shootSoundCB, gunSoundVol);
+        }
+        if (currentGun == gunName.sniper)
+        { // RL
+            source.PlayOneShot(shootSoundER, gunSoundVol);
+        }
         Destroy(bullet, 2.0f);
 
     }
@@ -294,6 +355,7 @@ public class PlayerController : NetworkBehaviour {
             bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * bulletVelocity;
 
             NetworkServer.Spawn(bullet);
+            //source.PlayOneShot(shootSound, .5f);
             Destroy(bullet, 2.0f);
         }
 
@@ -310,7 +372,8 @@ public class PlayerController : NetworkBehaviour {
         bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * bulletVelocity;
 
        NetworkServer.Spawn(bullet);
-        Destroy(bullet, 2.0f);
+            //source.PlayOneShot(shootSound, .5f);
+            Destroy(bullet, 2.0f);
         }
 
     }

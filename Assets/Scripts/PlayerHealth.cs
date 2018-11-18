@@ -17,12 +17,27 @@ public class PlayerHealth : NetworkBehaviour {
     public GameObject[] spawnPoints;
 
     private Rigidbody rb;
+
+
+    //getting hit
+    /*public AudioClip hitSound;
+    private float hitSoundVol;
+    private AudioSource source;
+*/
+
+
+
+
+
     public void Start()
     {
         Debug.Log(spawnPoints[0].GetComponent<Transform>().position.x);
         Debug.Log(spawnPoints[0].GetComponent<Transform>().position.y);
         Debug.Log(spawnPoints[0].GetComponent<Transform>().position.z);
         rb = GetComponent<Rigidbody>();
+        //source = GetComponent<AudioSource>();
+        //source = GetComponent<PlayerController>().source;
+        //hitSoundVol = 0.4f;
     }
 
 
@@ -47,6 +62,8 @@ public class PlayerHealth : NetworkBehaviour {
         {
 
             currentHealth -= amount;
+            //source = GetComponent<AudioSource>();
+            //source.PlayOneShot(hitSound, hitSoundVol);
             Debug.Log("take damage2");
             if (currentHealth <= 0)
             {
