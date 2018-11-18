@@ -102,7 +102,7 @@ public class PlayerController : NetworkBehaviour {
         characterUI = GameObject.Find("characterUI");
         //characterUI = gameObject.transform.GetChild(1).gameObject; //grabs the camera of this game object
         //characterUI = characterUI.transform.GetChild(1).gameObject; //get character UI on GameObject
-        characterUI = characterUI.transform.GetChild(0).gameObject; //get image on gameobject
+        characterUI = characterUI.transform.GetChild(3).gameObject; //get image on gameobject
         ammoUI = characterUI.transform.GetChild(0).gameObject; //get ammo on gameobject
         healthUI = characterUI.transform.GetChild(1).gameObject; //get ammo on gameobject
         ammoUI.GetComponent < Text > ().text = ammoCount.ToString();
@@ -222,7 +222,22 @@ public class PlayerController : NetworkBehaviour {
                     fireRateTimer = 0;
                     Debug.Log("shoot");
                     ammoCount--;
-                   //source.PlayOneShot(shootSound, .5f);
+                    //source.PlayOneShot(shootSound, .5f);
+                    if (!isServer)
+                    {
+                    if (currentGun == gunName.rocketLauncher)
+                    { // RL
+                        source.PlayOneShot(shootSoundRL, gunSoundVol);
+                    }
+                    if (currentGun == gunName.crossBow)
+                    { // RL
+                        source.PlayOneShot(shootSoundCB, gunSoundVol);
+                    }
+                    if (currentGun == gunName.sniper)
+                    { // RL
+                        source.PlayOneShot(shootSoundER, gunSoundVol);
+                    }
+                }
 
                 }
             }
@@ -241,6 +256,7 @@ public class PlayerController : NetworkBehaviour {
                         fireRateTimer = 0;
                         Debug.Log("shoot");
                         ammoCount--;
+
 
                     }
                 }
@@ -338,7 +354,23 @@ public class PlayerController : NetworkBehaviour {
             source.PlayOneShot(shootSoundER, gunSoundVol);
         }
         Destroy(bullet, 2.0f);
+        RpcGunShotSound();
+    }
 
+    [ClientRpc]
+    void RpcGunShotSound(){
+        if (currentGun == gunName.rocketLauncher)
+        { // RL
+            source.PlayOneShot(shootSoundRL, gunSoundVol);
+        }
+        if (currentGun == gunName.crossBow)
+        { // RL
+            source.PlayOneShot(shootSoundCB, gunSoundVol);
+        }
+        if (currentGun == gunName.sniper)
+        { // RL
+            source.PlayOneShot(shootSoundER, gunSoundVol);
+        }
     }
 
     [ClientRpc]
@@ -358,6 +390,8 @@ public class PlayerController : NetworkBehaviour {
             //source.PlayOneShot(shootSound, .5f);
             Destroy(bullet, 2.0f);
         }
+
+
 
     }
 

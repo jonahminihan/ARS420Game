@@ -31,9 +31,9 @@ public class PlayerHealth : NetworkBehaviour {
 
     public void Start()
     {
-        Debug.Log(spawnPoints[0].GetComponent<Transform>().position.x);
-        Debug.Log(spawnPoints[0].GetComponent<Transform>().position.y);
-        Debug.Log(spawnPoints[0].GetComponent<Transform>().position.z);
+        //Debug.Log(spawnPoints[0].GetComponent<Transform>().position.x);
+        //Debug.Log(spawnPoints[0].GetComponent<Transform>().position.y);
+        //Debug.Log(spawnPoints[0].GetComponent<Transform>().position.z);
         rb = GetComponent<Rigidbody>();
         //source = GetComponent<AudioSource>();
         //source = GetComponent<PlayerController>().source;
