@@ -407,7 +407,7 @@ MonoBehaviour:
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 1
   m_OfflineScene: MainMenu
-  m_OnlineScene: betamap
+  m_OnlineScene: betamap2TJ
   m_SpawnPrefabs:
   - {fileID: 1091776530429202, guid: 3d97c4b2fb669d04484b2d4875d08bb4, type: 2}
   - {fileID: 1676626377821032, guid: 28d3c382fb4454bf9adf127932529835, type: 2}

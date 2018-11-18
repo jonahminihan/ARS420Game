@@ -38,13 +38,13 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731725, g: 0.13414752, b: 0.121078566, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -616,16 +616,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 114722661043677894, guid: 78bda853b4f1e36488baedf6f7cadf88,
-        type: 2}
-      propertyPath: spawnPoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 293461555}
-    - target: {fileID: 114722661043677894, guid: 78bda853b4f1e36488baedf6f7cadf88,
-        type: 2}
-      propertyPath: spawnPoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 1599004567}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78bda853b4f1e36488baedf6f7cadf88, type: 2}
   m_IsPrefabAsset: 0
@@ -967,11 +957,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 257522431}
   m_CullTransparentMesh: 0
---- !u!1 &293461555 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1581083411122550, guid: 91efa26b025894faba0210d6ed13b8a6,
-    type: 2}
-  m_PrefabInternal: {fileID: 133084854}
 --- !u!1 &306723885
 GameObject:
   m_ObjectHideFlags: 0
@@ -2065,7 +2050,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000033446227, y: 0.000009951517}
+  m_AnchoredPosition: {x: 0.000033446227, y: 0.000010956822}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &652616988
@@ -4124,11 +4109,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1547157666}
   m_CullTransparentMesh: 0
---- !u!1 &1599004567 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1760614065503704, guid: 91efa26b025894faba0210d6ed13b8a6,
-    type: 2}
-  m_PrefabInternal: {fileID: 133084854}
 --- !u!1 &1608741714
 GameObject:
   m_ObjectHideFlags: 0

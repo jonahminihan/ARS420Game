@@ -1414,8 +1414,8 @@ MonoBehaviour:
   currentHealth: 100
   destroyOnDeath: 0
   spawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1581083411122550, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}
+  - {fileID: 1760614065503704, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}
   - {fileID: 1644744808874178, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}
   - {fileID: 1318894195211482, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}
   - {fileID: 1260481744465494, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}
@@ -1423,7 +1423,6 @@ MonoBehaviour:
   - {fileID: 1877403688821772, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}
   - {fileID: 1376846278320774, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}
   - {fileID: 1348965327627470, guid: 91efa26b025894faba0210d6ed13b8a6, type: 2}
-  hitSound: {fileID: 8300000, guid: a201b579ecfae47ebb62ce1612008f86, type: 3}
 --- !u!114 &114834769420992512
 MonoBehaviour:
   m_ObjectHideFlags: 1

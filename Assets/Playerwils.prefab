@@ -819,7 +819,7 @@ GameObject:
   - component: {fileID: 114722661043677894}
   - component: {fileID: 65799115459470620}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Playerwils
   m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2931,22 +2931,22 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 120
-    i1: 189
-    i2: 168
-    i3: 83
-    i4: 180
-    i5: 241
-    i6: 227
-    i7: 100
-    i8: 136
-    i9: 186
-    i10: 237
-    i11: 246
-    i12: 247
-    i13: 202
-    i14: 223
-    i15: 136
+    i0: 70
+    i1: 124
+    i2: 126
+    i3: 39
+    i4: 7
+    i5: 156
+    i6: 20
+    i7: 98
+    i8: 251
+    i9: 35
+    i10: 195
+    i11: 220
+    i12: 55
+    i13: 116
+    i14: 81
+    i15: 51
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
 --- !u!114 &114577952941977962
@@ -2963,22 +2963,22 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 120
-    i1: 189
-    i2: 168
-    i3: 83
-    i4: 180
-    i5: 241
-    i6: 227
-    i7: 100
-    i8: 136
-    i9: 186
-    i10: 237
-    i11: 246
-    i12: 247
-    i13: 202
-    i14: 223
-    i15: 136
+    i0: 70
+    i1: 124
+    i2: 126
+    i3: 39
+    i4: 7
+    i5: 156
+    i6: 20
+    i7: 98
+    i8: 251
+    i9: 35
+    i10: 195
+    i11: 220
+    i12: 55
+    i13: 116
+    i14: 81
+    i15: 51
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
 --- !u!114 &114722661043677894
@@ -3017,6 +3017,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   lookSensitivity: 3
+  shootSoundCB: {fileID: 0}
+  shootSoundRL: {fileID: 0}
+  shootSoundER: {fileID: 0}
+  jumpSound: {fileID: 0}
+  runSound: {fileID: 0}
+  source: {fileID: 0}
+  red: {fileID: 0}
+  blue: {fileID: 0}
   bulletPrefab: {fileID: 1091776530429202, guid: 3d97c4b2fb669d04484b2d4875d08bb4,
     type: 2}
   crossBowBolt: {fileID: 1477672408546658, guid: 71a367d77959e4367b515d630cac9e63,
