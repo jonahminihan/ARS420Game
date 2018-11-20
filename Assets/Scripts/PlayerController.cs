@@ -109,6 +109,8 @@ public class PlayerController : NetworkBehaviour {
 
         playerModel = gameObject.transform.GetChild(0).gameObject;
         playerModel = playerModel.transform.GetChild(0).gameObject;
+        playerModel = playerModel.transform.GetChild(0).gameObject;
+        playerModel = playerModel.transform.GetChild(1).gameObject;
         rendererSkin = playerModel.GetComponent<Renderer>();
         if(team == 0){
             rendererSkin.material.SetTexture("_MainTex", blue);

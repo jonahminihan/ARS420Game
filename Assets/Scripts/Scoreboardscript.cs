@@ -22,14 +22,19 @@ public class Scoreboardscript : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if(isServer){
+
+       
         if (teams0score >= WinScore){
             //endGameUI.enabled = true;
             canv.enabled = true;
+                RpcTurnEndGameOn();
         }
         if (teams1score >=WinScore){
             canv.enabled = true;
+                RpcTurnEndGameOn();
+            }
         }
-        
     }
 
 
@@ -44,5 +49,24 @@ public class Scoreboardscript : NetworkBehaviour {
         {
             teams0score++;
         }
+    }
+
+    [ClientRpc]
+    public void RpcTurnEndGameOn(){
+        canv.enabled = true;
+
+    }
+    [ClientRpc]
+    public void RpcUpdateScore(int teamss)
+    {
+        if (teamss == 0)
+        {
+            teams1score++;
+        }
+        else if (teamss == 1)
+        {
+            teams0score++;
+        }
+
     }
 }
