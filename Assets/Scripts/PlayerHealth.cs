@@ -72,7 +72,7 @@ public class PlayerHealth : NetworkBehaviour {
                 Debug.Log("dead");
                 RpcRespawn();
                 int team = gameObject.GetComponent<PlayerController>().team;                      // gameObject is for the game object your script is on
-                GameObject.Find("Scoreboard").GetComponent<Scoreboardscript>().updatescore(team);
+                GameObject.Find("Scoreboard").GetComponent<Scoreboardscript>().CmdUpdateScore(team);
             }
         }
     }

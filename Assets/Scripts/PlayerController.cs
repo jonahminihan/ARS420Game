@@ -85,6 +85,7 @@ public class PlayerController : NetworkBehaviour {
     public bool lobbyActive = false;
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         bulletVelocity = bulletVelocityCB;
         gunCollection[0] = false;
         gunCollection[1] = true;
@@ -140,9 +141,9 @@ public class PlayerController : NetworkBehaviour {
         //Character UI
         ammoUI.GetComponent<Text>().text = ammoCount.ToString();
         healthUI.GetComponent<Text>().text = gameObject.GetComponent<PlayerHealth>().currentHealth.ToString();
-        //redTeamScoreUI.GetComponent<Text>().text = scoreboard.GetComponent<Scoreboardscript>().teams0score.ToString();
-        //blueTeamScoreUI.GetComponent<Text>().text = scoreboard.GetComponent<Scoreboardscript>().teams1score.ToString();
-        CmdUpdateScore();
+        redTeamScoreUI.GetComponent<Text>().text = scoreboard.GetComponent<Scoreboardscript>().teams0score.ToString();
+        blueTeamScoreUI.GetComponent<Text>().text = scoreboard.GetComponent<Scoreboardscript>().teams1score.ToString();
+        //CmdUpdateScore();
 
 
         //Calculate movement veloxity as a 3d vector
@@ -329,6 +330,7 @@ public class PlayerController : NetworkBehaviour {
                 Cursor.lockState = CursorLockMode.None;
             }
         }
+       
 
     }
 
