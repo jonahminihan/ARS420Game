@@ -5,9 +5,9 @@ using UnityEngine.Networking;
 
 
 public class Scoreboardscript : NetworkBehaviour {
-    [SyncVar]
+    //[SyncVar]
     public int teams0score = 0;
-    [SyncVar]
+    //[SyncVar]
     public int teams1score=0;
     public int WinScore = 25;
     private GameObject endGameUI;// = GameObject.Find("EndGame");
@@ -57,16 +57,31 @@ public class Scoreboardscript : NetworkBehaviour {
 
     }
     [ClientRpc]
-    public void RpcUpdateScore(int teamss)
+    public void RpcUpdateScore(int teamss, int team0, int team1)
     {
-        if (teamss == 0)
+        //if (teamss == 0)
+        //{
+        //    teams1score++;
+        //}
+        //else if (teamss == 1)
+        //{
+        //    teams0score++;
+        //}
+        teams0score = team0;
+        teams1score = team1;
+
+    }
+
+    [Command]
+    public void CmdUpdateScore(int teamsss){
+        if (teamsss == 0)
         {
             teams1score++;
         }
-        else if (teamss == 1)
+        else if (teamsss == 1)
         {
             teams0score++;
         }
-
+        RpcUpdateScore(teamsss, teams0score, teams1score);
     }
 }

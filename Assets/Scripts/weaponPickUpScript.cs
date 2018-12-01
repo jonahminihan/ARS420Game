@@ -26,7 +26,7 @@ public class weaponPickUpScript : NetworkBehaviour {
         {
             if (gameObject.name[1] == 'r')
             {
-                controller.gunCollection[1] = true;
+                controller.gunCollection[3] = true;
             }
         }
         //controller.gunCollection[0] = true;
