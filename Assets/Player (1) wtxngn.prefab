@@ -4781,6 +4781,8 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: 5b839c4a5742a4d2fa4123dd83fc7191, type: 3}
   runSound: {fileID: 8300000, guid: ae7cd47585bc24e729183e4010ae121e, type: 3}
   source: {fileID: 0}
+  networkManager: {fileID: 114510116336405048, guid: 91efa26b025894faba0210d6ed13b8a6,
+    type: 2}
   red: {fileID: 2800000, guid: b8c4f27a95ccd0a40b3c5a20590c3224, type: 3}
   blue: {fileID: 2800000, guid: 62746acee01ca554c89aa4bd745cedca, type: 3}
   bulletPrefab: {fileID: 1091776530429202, guid: 3d97c4b2fb669d04484b2d4875d08bb4,

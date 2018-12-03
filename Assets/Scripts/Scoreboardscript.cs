@@ -9,7 +9,7 @@ public class Scoreboardscript : NetworkBehaviour {
     public int teams0score = 0;
     //[SyncVar]
     public int teams1score=0;
-    public int WinScore = 25;
+    private int WinScore = 25;
     private GameObject endGameUI;// = GameObject.Find("EndGame");
     private Canvas canv;
 
@@ -22,18 +22,29 @@ public class Scoreboardscript : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(isServer){
+        //if(isServer){
 
        
-        if (teams0score >= WinScore){
+        //if (teams0score >= WinScore){
+        //    //endGameUI.enabled = true;
+        //    canv.enabled = true;
+        //        RpcTurnEndGameOn();
+        //}
+        //if (teams1score >=WinScore){
+        //    canv.enabled = true;
+        //        RpcTurnEndGameOn();
+        //    }
+        //}
+        if (teams0score >= WinScore)
+        {
             //endGameUI.enabled = true;
             canv.enabled = true;
-                RpcTurnEndGameOn();
+            //RpcTurnEndGameOn();
         }
-        if (teams1score >=WinScore){
+        if (teams1score >= WinScore)
+        {
             canv.enabled = true;
-                RpcTurnEndGameOn();
-            }
+           // RpcTurnEndGameOn();
         }
     }
 
@@ -53,9 +64,15 @@ public class Scoreboardscript : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcTurnEndGameOn(){
+        endGameUI = GameObject.Find("EndGame");
+        canv = endGameUI.GetComponent<Canvas>();
         canv.enabled = true;
 
     }
+
+    //[Command]
+    //public void CmdTurn
+
     [ClientRpc]
     public void RpcUpdateScore(int teamss, int team0, int team1)
     {
