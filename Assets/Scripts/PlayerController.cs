@@ -29,7 +29,7 @@ public class PlayerController : NetworkBehaviour {
     /// <summary>
     /// 
     /// </summary>
-
+    public NetworkManager networkManager;
     private PlayerMotor motor;
     public Texture red;
     public Texture blue;
@@ -79,6 +79,7 @@ public class PlayerController : NetworkBehaviour {
     private GameObject healthUI;
     private GameObject redTeamScoreUI;
     private GameObject blueTeamScoreUI;
+    private GameObject teamUI;
     private GameObject scoreboard;
     private Canvas canv;
     private GameObject lobbyWait;
@@ -115,6 +116,9 @@ public class PlayerController : NetworkBehaviour {
         rendererSkin = playerModel.GetComponent<Renderer>();
         if(team == 0){
             rendererSkin.material.SetTexture("_MainTex", blue);
+            teamUI = GameObject.Find("characterUI");
+            teamUI = teamUI.transform.GetChild(4).gameObject;
+            teamUI.SetActive(true);
         }
         else{
             rendererSkin.material.SetTexture("_MainTex", red);
@@ -688,5 +692,9 @@ public class PlayerController : NetworkBehaviour {
         blueTeamScoreUI.GetComponent<Text>().text = scoreboard.GetComponent<Scoreboardscript>().teams1score.ToString();
 
 
+    }
+
+    public void leaveMatch(){
+        networkManager.client.Disconnect();
     }
 }

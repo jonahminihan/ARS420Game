@@ -60,26 +60,26 @@ public class splashScreen : MonoBehaviour {
         {
             splashOnTimer = splashOnTimer + Time.deltaTime;
             splashCanv.alpha = splashCanv.alpha + incrementAlpha;
-            Debug.Log("1");
-            Debug.Log(splashOnTimer);
+           //Debug.Log("1");
+            //Debug.Log(splashOnTimer);
         }
         else if (splashOnTimer > splashMaxTime && splashOn == false)
         {
             splashOnTimer = 0;
             splashOn = true;
-            Debug.Log("2");
+           // Debug.Log("2");
         }
         if (splashOnTimer <= splashMaxTime && splashOn == true && splashOff == false)
         {
             splashOnTimer = splashOnTimer + Time.deltaTime;
             splashCanv.alpha = splashCanv.alpha - incrementAlpha;
-            Debug.Log("3");
+           //Debug.Log("3");
         }
         else if (splashOnTimer > splashMaxTime && splashOn == true && splashOff == false)
         {
             splashOnTimer = 0;
             splashOff = true;
-            Debug.Log("4");
+            //Debug.Log("4");
         }
         ////////////////////////
         /// Main menu
@@ -90,14 +90,14 @@ public class splashScreen : MonoBehaviour {
         {
             splashOnTimer = splashOnTimer + Time.deltaTime;
             mmCanvGroup.alpha = mmCanvGroup.alpha + incrementAlpha;
-            Debug.Log("1");
-            Debug.Log(splashOnTimer);
+            //Debug.Log("1");
+            //Debug.Log(splashOnTimer);
         }
         else if (splashOnTimer > splashMaxTime && splashOn == true && splashOff == true && mmOff == true)
         {
             splashOnTimer = 0;
             mmOff = false;
-            Debug.Log("2");
+           //Debug.Log("2");
         }
         //if (splashOnTimer <= splashMaxTime && splashOn == true && splashOff == false)
         //{
