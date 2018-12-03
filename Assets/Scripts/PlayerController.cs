@@ -14,6 +14,7 @@ public class PlayerController : NetworkBehaviour {
     private float lookSensitivity = 3f;
 
 
+
     //HandleSound
     public AudioClip shootSoundCB;
     public AudioClip shootSoundRL;
@@ -85,11 +86,13 @@ public class PlayerController : NetworkBehaviour {
     public bool lobbyActive = false;
     void Start()
     {
+ 
+
         bulletVelocity = bulletVelocityCB;
-        gunCollection[0] = false;
-        gunCollection[1] = true;
-        gunCollection[2] = false;
-        gunCollection[3] = false;
+        gunCollection[0] = true; // rocket
+        gunCollection[1] = true; // cross
+        gunCollection[2] = false; // nothing
+        gunCollection[3] = true; // energy
         fireRateTimer = fireRate;
         teamObj = GameObject.Find("Teams");
         team = teamObj.GetComponent<TeamScript>().getTeam(); 
@@ -194,6 +197,7 @@ public class PlayerController : NetworkBehaviour {
                 if(hitObj.name[1] == 'l'){
                     Jump();
                     source.PlayOneShot(jumpSound, runSoundVol);
+                    // maybe jump here
                 }
             }
 
@@ -201,6 +205,7 @@ public class PlayerController : NetworkBehaviour {
         if (Input.GetKeyDown(KeyCode.W))
         {
             source.PlayOneShot(runSound, runSoundVol);
+           
 
         }
         if(Input.GetKeyUp(KeyCode.W)){
@@ -465,6 +470,19 @@ public class PlayerController : NetworkBehaviour {
             temp.SetActive(false);
             temp = gun1.transform.GetChild(4).gameObject; //get ER on gameobject
             temp.SetActive(false);
+
+            
+            GameObject gun12 = gameObject.transform.GetChild(0).gameObject; //grabs the graphics of this game object
+            gun12 = gun12.transform.GetChild(0).gameObject; //get gun on GameObject
+            gun12 = gun12.transform.GetChild(0).gameObject;
+            gun12 = gun12.transform.GetChild(0).gameObject;
+            gun12 = gun12.transform.GetChild(6).gameObject;
+            temp = gun12.transform.GetChild(7).gameObject; //get RL on gameobject
+            temp.SetActive(true);
+            temp = gun12.transform.GetChild(5).gameObject; //get CB on gameobject
+            temp.SetActive(false);
+            temp = gun12.transform.GetChild(6).gameObject; //get ER on gameobject
+            temp.SetActive(false);
         }
         if (gun == gunName.crossBow) // CB
         {
@@ -491,6 +509,19 @@ public class PlayerController : NetworkBehaviour {
             temp.SetActive(true);
             temp = gun1.transform.GetChild(4).gameObject; //get ER on gameobject
             temp.SetActive(false);
+
+            
+            GameObject gun12 = gameObject.transform.GetChild(0).gameObject; //grabs the graphics of this game object
+            gun12 = gun12.transform.GetChild(0).gameObject; //get gun on GameObject
+            gun12 = gun12.transform.GetChild(0).gameObject;
+            gun12 = gun12.transform.GetChild(0).gameObject;
+            gun12 = gun12.transform.GetChild(6).gameObject;
+            temp = gun12.transform.GetChild(7).gameObject; //get RL on gameobject
+            temp.SetActive(false);
+            temp = gun12.transform.GetChild(5).gameObject; //get CB on gameobject
+            temp.SetActive(true);
+            temp = gun12.transform.GetChild(6).gameObject; //get ER on gameobject
+            temp.SetActive(false); 
             //currentBullet.gameObject.transform.rotation.y = 90f;
         }
         if (gun == gunName.sword) // Sword
@@ -520,6 +551,19 @@ public class PlayerController : NetworkBehaviour {
             temp.SetActive(false);
             temp = gun1.transform.GetChild(4).gameObject; //get ER on gameobject
             temp.SetActive(true);
+            
+            
+            GameObject gun12 = gameObject.transform.GetChild(0).gameObject; //grabs the graphics of this game object
+            gun12 = gun12.transform.GetChild(0).gameObject; //get gun on GameObject
+            gun12 = gun12.transform.GetChild(0).gameObject;
+            gun12 = gun12.transform.GetChild(0).gameObject;
+            gun12 = gun12.transform.GetChild(6).gameObject;
+            temp = gun12.transform.GetChild(7).gameObject; //get RL on gameobject
+            temp.SetActive(false);
+            temp = gun12.transform.GetChild(5).gameObject; //get CB on gameobject
+            temp.SetActive(false);
+            temp = gun12.transform.GetChild(6).gameObject; //get ER on gameobject
+            temp.SetActive(true);
         }
     }
 
@@ -547,6 +591,19 @@ public class PlayerController : NetworkBehaviour {
             temp.SetActive(false);
             temp = gun1.transform.GetChild(4).gameObject; //get ER on gameobject
             temp.SetActive(false);
+            
+            
+            GameObject gun12 = gameObject.transform.GetChild(0).gameObject; //grabs the graphics of this game object
+            gun12 = gun12.transform.GetChild(0).gameObject; //get gun on GameObject
+            gun12 = gun12.transform.GetChild(0).gameObject;
+            gun12 = gun12.transform.GetChild(0).gameObject;
+            gun12 = gun12.transform.GetChild(6).gameObject;
+            temp = gun12.transform.GetChild(7).gameObject; //get RL on gameobject
+            temp.SetActive(true);
+            temp = gun12.transform.GetChild(5).gameObject; //get CB on gameobject
+            temp.SetActive(false);
+            temp = gun12.transform.GetChild(6).gameObject; //get ER on gameobject
+            temp.SetActive(false);
         }
         if (gun == gunName.crossBow) // CB
         {
@@ -570,6 +627,19 @@ public class PlayerController : NetworkBehaviour {
             temp = gun1.transform.GetChild(0).gameObject; //get CB on gameobject
             temp.SetActive(true);
             temp = gun1.transform.GetChild(4).gameObject; //get ER on gameobject
+            temp.SetActive(false);
+            
+            
+            GameObject gun12 = gameObject.transform.GetChild(0).gameObject; //grabs the graphics of this game object
+            gun12 = gun12.transform.GetChild(0).gameObject; //get gun on GameObject
+            gun12 = gun12.transform.GetChild(0).gameObject;
+            gun12 = gun12.transform.GetChild(0).gameObject;
+            gun12 = gun12.transform.GetChild(6).gameObject;
+            temp = gun12.transform.GetChild(7).gameObject; //get RL on gameobject
+            temp.SetActive(false);
+            temp = gun12.transform.GetChild(5).gameObject; //get CB on gameobject
+            temp.SetActive(true);
+            temp = gun12.transform.GetChild(6).gameObject; //get ER on gameobject
             temp.SetActive(false);
             //currentBullet.gameObject.transform.rotation.y = 90f;
         }
@@ -596,6 +666,19 @@ public class PlayerController : NetworkBehaviour {
             temp = gun1.transform.GetChild(0).gameObject; //get CB on gameobject
             temp.SetActive(false);
             temp = gun1.transform.GetChild(4).gameObject; //get ER on gameobject
+            temp.SetActive(true);
+            
+            
+            GameObject gun12 = gameObject.transform.GetChild(0).gameObject; //grabs the graphics of this game object
+            gun12 = gun12.transform.GetChild(0).gameObject; //get gun on GameObject
+            gun12 = gun12.transform.GetChild(0).gameObject;
+            gun12 = gun12.transform.GetChild(0).gameObject;
+            gun12 = gun12.transform.GetChild(6).gameObject;
+            temp = gun12.transform.GetChild(7).gameObject; //get RL on gameobject
+            temp.SetActive(false);
+            temp = gun12.transform.GetChild(5).gameObject; //get CB on gameobject
+            temp.SetActive(false);
+            temp = gun12.transform.GetChild(6).gameObject; //get ER on gameobject
             temp.SetActive(true);
         }
     }
@@ -624,6 +707,19 @@ public class PlayerController : NetworkBehaviour {
             temp.SetActive(false);
             temp = gun1.transform.GetChild(4).gameObject; //get ER on gameobject
             temp.SetActive(false);
+            
+            
+            GameObject gun12 = gameObject.transform.GetChild(0).gameObject; //grabs the graphics of this game object
+            gun12 = gun12.transform.GetChild(0).gameObject; //get gun on GameObject
+            gun12 = gun12.transform.GetChild(0).gameObject;
+            gun12 = gun12.transform.GetChild(0).gameObject;
+            gun12 = gun12.transform.GetChild(6).gameObject;
+            temp = gun12.transform.GetChild(7).gameObject; //get RL on gameobject
+            temp.SetActive(true);
+            temp = gun12.transform.GetChild(5).gameObject; //get CB on gameobject
+            temp.SetActive(false);
+            temp = gun12.transform.GetChild(6).gameObject; //get ER on gameobject
+            temp.SetActive(false);
         }
         if (gun == gunName.crossBow) // CB
         {
@@ -649,6 +745,19 @@ public class PlayerController : NetworkBehaviour {
             temp = gun1.transform.GetChild(4).gameObject; //get ER on gameobject
             temp.SetActive(false);
             //currentBullet.gameObject.transform.rotation.y = 90f;
+
+            
+            GameObject gun12 = gameObject.transform.GetChild(0).gameObject; //grabs the graphics of this game object
+            gun12 = gun12.transform.GetChild(0).gameObject; //get gun on GameObject
+            gun12 = gun12.transform.GetChild(0).gameObject;
+            gun12 = gun12.transform.GetChild(0).gameObject;
+            gun12 = gun12.transform.GetChild(6).gameObject;
+            temp = gun12.transform.GetChild(7).gameObject; //get RL on gameobject
+            temp.SetActive(false);
+            temp = gun12.transform.GetChild(5).gameObject; //get CB on gameobject
+            temp.SetActive(true);
+            temp = gun12.transform.GetChild(6).gameObject; //get ER on gameobject
+            temp.SetActive(false);
         }
         if (gun == gunName.sword) // Sword
         {
@@ -673,6 +782,19 @@ public class PlayerController : NetworkBehaviour {
             temp = gun1.transform.GetChild(0).gameObject; //get CB on gameobject
             temp.SetActive(false);
             temp = gun1.transform.GetChild(4).gameObject; //get ER on gameobject
+            temp.SetActive(true);
+
+            
+            GameObject gun12 = gameObject.transform.GetChild(0).gameObject; //grabs the graphics of this game object
+            gun12 = gun12.transform.GetChild(0).gameObject; //get gun on GameObject
+            gun12 = gun12.transform.GetChild(0).gameObject;
+            gun12 = gun12.transform.GetChild(0).gameObject;
+            gun12 = gun12.transform.GetChild(6).gameObject;
+            temp = gun12.transform.GetChild(7).gameObject; //get RL on gameobject
+            temp.SetActive(false);
+            temp = gun12.transform.GetChild(5).gameObject; //get CB on gameobject
+            temp.SetActive(false);
+            temp = gun12.transform.GetChild(6).gameObject; //get ER on gameobject
             temp.SetActive(true);
         }
     }
